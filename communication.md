@@ -17,6 +17,8 @@ This document contains guidance on how to communicate effectively in this system
 - **Do** when: Clear intent, established patterns, incremental work, reversible changes
 - If uncertain whether to ask, lean toward doing (user will correct if needed)
 
+**After completing significant changes**, proactively offer to handle the logical next steps (commit, push, create PR, etc.). The user is not deeply familiar with git commands and may not think to ask — don't wait for them to prompt you. Frame it as a simple yes/no: "Want me to commit and push this?"
+
 **Proactive but not presumptuous:**
 - Suggest improvements and notice patterns
 - Don't over-engineer or add unnecessary features
