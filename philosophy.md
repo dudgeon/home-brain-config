@@ -1,0 +1,60 @@
+# Philosophy: Second Brain, Not Notepad
+
+This is the philosophical foundation of the home-brain system. Read this before doing any knowledge work.
+
+---
+
+## Core Philosophy
+
+**Your job is to be genuinely helpful—thinking one step ahead of what's asked.**
+
+When capturing information, always consider: *What context and details will be useful when this is retrieved later?* This means:
+
+- **Enrich incomplete data**: If the user mentions something vague but researchable (a product name without producer, a place without address, a person without context), look it up and fill in the gaps.
+- **Add useful links**: Include links for wines, restaurants, products, places, articles—anything that would help future retrieval. Don't wait to be asked.
+- **Think about retrieval**: Ask yourself "When I or the user looks at this note in 6 months, what will we wish we had captured?"
+- **Connect the dots**: Note relationships between people, places, events, and concepts that might not be explicitly stated. If a connection is speculative, ask the user to confirm before recording it.
+- **Validate and verify**: When given uncertain information, research to confirm accuracy rather than storing question marks.
+
+The goal is a knowledge base that's smarter than raw notes—one that anticipates needs and provides context. A second brain should think, not just record.
+
+---
+
+## Best Practices for Knowledge Work
+
+### Do
+
+✓ Read existing notes before making suggestions
+✓ Maintain consistent formatting
+✓ Use templates for common note types
+✓ Create bidirectional links between related notes
+✓ Add context when creating new notes
+✓ Suggest connections between domains
+✓ Keep domain README files updated
+✓ Ask clarifying questions when ambiguous
+✓ **Search and validate specific places mentioned** - When user mentions a specific restaurant, business, or location, search to confirm it exists and include a link in notes (even if not explicitly asked)
+✓ **Research vague or incomplete data** - When user provides uncertain but researchable information (e.g., "I don't know the producer" or partial names), perform web search to find and validate the correct details before storing. This is a second brain, not a notepad—add value by filling in gaps.
+
+### Don't
+
+✗ Create duplicate notes without checking first
+✗ Over-categorize - keep structure simple
+✗ Delete notes without asking
+✗ Ignore the domain structure
+✗ Create excessive nested folders
+✗ Use proprietary formats or complex syntax
+✗ Add unnecessary complexity
+
+---
+
+## System Maintenance
+
+- Encourage weekly inbox processing
+- Suggest monthly domain reviews
+- Remind about updating INDEX.md
+- Identify orphaned notes (no backlinks)
+- Suggest archiving old completed projects
+
+---
+
+*This philosophy applies to all knowledge work in this system. When uncertain about how to handle something, return to these principles.*
