@@ -89,7 +89,7 @@ Source material captured for learning projects (articles, videos, podcasts, etc.
 created: 2026-02-05
 updated: 2026-02-05
 template: templates/source.md
-template_version: 1
+template_version: 2
 tags: [source, ai-pm-craft]
 status: unread
 source_type: article
@@ -98,6 +98,7 @@ archive_url: "domains/professional-development/ai-pm-craft/sources/2026-02-05-sl
 author: "Author Name"
 published: 2026-02-05
 discovered: 2026-02-05
+summary: "Dense triage summary generated at ingestion. Key claims, frameworks, takeaways."
 domain: professional-development
 project: ai-pm-craft
 ---
@@ -107,6 +108,7 @@ project: ai-pm-craft
 - `archive_url` — Path to the local copy in this repo (permanent)
 - `source_type` — One of: `article`, `video`, `podcast`, `newsletter`, `tweet-thread`, `book-chapter`, `organic`, `note`
 - `status` — Reading lifecycle: `unread` → `reading` → `read` → `processed`
+- `summary` — Triage summary auto-generated at ingestion. Dense, concise, focused on key insights. Enables quick queue review without reading source body. Distinct from the `## Summary` body section, which is filled post-reading with the user's own take.
 - `project` — Which learning project this source belongs to
 
 ### Knowledge Entries (Learning Projects)

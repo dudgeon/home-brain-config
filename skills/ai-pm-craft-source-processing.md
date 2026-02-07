@@ -36,14 +36,19 @@ Trigger: User shares content (link, text, dictation about something they found)
 
 1. **Determine source metadata**: title, author, source_url, source_type, published date
 2. **Fetch content if possible**: Use the source URL to retrieve the full text/transcript. If blocked, note that raw content needs manual capture.
-3. **Create source file** from `templates/source.md` in `domains/professional-development/ai-pm-craft/sources/`
+3. **Generate triage summary**: Read the raw content and write a succinct summary for the frontmatter `summary` field. This is for quick triage — helping decide what's worth reading — not deep analysis.
+   - **Tone**: Dense, concise, no fluff. Acronyms OK. Think "what would I need to know to decide whether to read this?"
+   - **Focus**: Key claims, frameworks, or takeaways. What's novel or contrarian? What's the author's main argument?
+   - **Length**: 1-3 sentences. Err short.
+   - **Not**: Theme extraction, knowledge-base integration, or reading notes. That's for the processing step after reading.
+4. **Create source file** from `templates/source.md` in `domains/professional-development/ai-pm-craft/sources/`
    - Filename: `YYYY-MM-DD-slug.md` (date = discovered date, slug = descriptive)
    - Set `status: unread`
-   - Fill in all known frontmatter
+   - Fill in all known frontmatter, including `summary` from step 3
    - Place raw content under `## Raw Content`
    - `archive_url` = the GitHub path to this file (relative to repo root)
-4. **Update `sources/_index.md`**: Add row to the All Sources table and the Unread section
-5. **Update the ai-pm-craft README.md reading queue section**: Add to "Up Next (Unread)"
+5. **Update `sources/_index.md`**: Add row to the All Sources table and the Unread section
+6. **Update the ai-pm-craft README.md reading queue section**: Add to "Up Next (Unread)"
 
 ### Mark Source as Read
 
@@ -86,7 +91,7 @@ Trigger: "What's in my queue?", "what should I read?", "reading status"
 
 1. Query `sources/_index.md` for status counts
 2. Report: total sources, unread count, reading count, read-but-unprocessed count, processed count
-3. List unread sources with brief descriptions and source types
+3. List unread sources with their frontmatter `summary` fields — these triage summaries give quick context without reading the full source. Read summaries from source file frontmatter directly (no separate index needed).
 4. Highlight any read-but-unprocessed sources (these represent unrealized value)
 
 ### Knowledge Gap Analysis
