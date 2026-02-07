@@ -78,7 +78,7 @@ Every inbox item is a signal. Before routing, ask:
 1. **New entity?** Does this introduce a person, project, organization, recurring event, or topic not yet in the system?
    - Person → create from `templates/person.md` in `domains/people/` (or `domains/family/[child]/friends.md` for kids' friends)
    - Project → create from `templates/project.md` in the relevant domain
-   - Organization → add to `.claude/entity-index.md` and create a note in the relevant domain
+   - Organization → create a note in the relevant domain
    - New life area → consider whether a new domain folder is warranted (rare — discuss with user)
 
 2. **Existing entity update?** Does this add information to something already tracked?
@@ -119,5 +119,4 @@ When processing inbox (whether prompted or as post-task check):
 5. Create links to related notes
 6. Move to appropriate domain folder (or merge into existing note)
 7. Update INDEX.md if significant
-8. Update `.claude/entity-index.md` if new entities were created
-9. Archive processed item to `_archive/YYYY-Www/`
+8. Archive processed item to `_archive/YYYY-Www/`

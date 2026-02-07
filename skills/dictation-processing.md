@@ -34,7 +34,12 @@ This is NOT transcription. It's intelligence work.
 
 **Before acting, read the whole input.** Dictations often circle back, clarify, or contradict earlier statements. Don't process linearly.
 
-**Identify the entities.** Who and what is mentioned? Check `.claude/entity-index.md` for quick lookup, then read relevant context files for full understanding. Unknown entities might be:
+**Identify the entities.** Who and what is mentioned? Resolve names using this lookup order:
+1. `context/family.md` — immediate family, extended family, key friends (handles "my wife", "my brother", nicknames)
+2. `domains/people/` — individual person files for friends and contacts
+3. `context/*.md` — orgs, projects, places referenced in other context files
+
+Unknown entities might be:
 - New people who need person files
 - Known people referred to by nickname or role ("my brother")
 - Projects or places mentioned in passing
