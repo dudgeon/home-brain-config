@@ -27,7 +27,7 @@ This skill covers how to handle person notes, including multi-person interaction
 
 ## Kids' Timeline Entries
 
-**IMPORTANT**: Owen and Alina have their own timeline files at `domains/family/[child]/memories.md` under a `## Timeline` section. These timelines capture memorable events, milestones, and experiences from their perspective.
+**IMPORTANT**: Each child has their own timeline file at `domains/family/[child]/memories.md` under a `## Timeline` section. These timelines capture memorable events, milestones, and experiences from their perspective.
 
 **When to add a kids' timeline entry**: Any event that is meaningful, memorable, or milestone-worthy for that child:
 - Trips and outings (family travel, day trips)

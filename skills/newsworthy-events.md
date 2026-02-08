@@ -86,25 +86,25 @@ This follows the philosophy: enrich incomplete data and validate information, bu
 ## Examples
 
 **Good: Weather event with impact**
-> User: "Owen and Asa shoveled driveways today. Huge snow storm."
+> User: "[Child] and [friend] shoveled driveways today. Huge snow storm."
 > Claude: *Searches "snow storm [location] January 25 2026"*
 > Claude: *Finds National Weather Service report and local news coverage*
-> Claude: *Adds to timeline: "Shoveling driveways with Asa (major snow storm - [link to NWS/local news])"*
+> Claude: *Adds to timeline: "Shoveling driveways with [friend] (major snow storm - [link to NWS/local news])"*
 
 **Good: Event cancellation due to news**
 > User: "The escape room was cancelled because of the weather."
 > Claude: *Already has weather link from previous context*
-> Claude: *Updates timeline: "Ari's birthday party moved from escape room to home due to snow storm ([link])"*
+> Claude: *Updates timeline: "[Friend]'s birthday party moved from escape room to home due to snow storm ([link])"*
 
 **Good: School closure**
 > User: "No school today because of icy roads."
 > Claude: *Searches "[school district name] closure January 2026"*
 > Claude: *Finds school district announcement or local news*
-> Claude: *Adds: "Snow day - school closed due to icy conditions ([link to district announcement])"*
+> Claude: *Adds: "[Child]'s snow day - school closed due to icy conditions ([link to district announcement])"*
 
 **Bad: No search performed**
-> User: "Owen and Asa shoveled driveways today. Huge snow storm."
-> Claude: *Adds to timeline: "Shoveling driveways with Asa during a huge snow storm"*
+> User: "[Child] and [friend] shoveled driveways today. Huge snow storm."
+> Claude: *Adds to timeline: "Shoveling driveways with [friend] during a huge snow storm"*
 > ❌ Missing: verification and link to trusted source
 
 **Bad: Creating artifact instead of linking**
@@ -118,7 +118,7 @@ This follows the philosophy: enrich incomplete data and validate information, bu
 > ❌ Should have found official minutes or neutral local news coverage
 
 **Good: No link needed (not newsworthy)**
-> User: "Owen had a playdate with Felix, they played video games."
+> User: "[Child] had a playdate with [friend], they played video games."
 > Claude: *Adds to timeline without news search*
 > ✓ Regular playdate doesn't need verification
 

@@ -55,7 +55,7 @@ Unknown entities might be:
 - Context files (preferences, relationships, patterns)
 - Domain notes (events, projects, learnings)
 - Person files (timeline entries, profile updates)
-- **Kids' memories/timelines** (`domains/family/owen/memories.md`, `domains/family/alina/memories.md`) — any event meaningful to a child gets a timeline entry, even if the detail lives in a domain file
+- **Kids' memories/timelines** (`domains/family/[child]/memories.md`) — any event meaningful to a child gets a timeline entry, even if the detail lives in a domain file
 - Multiple places (multi-person interactions)
 
 **Update, don't just create.** Check if relevant notes exist before creating new ones. A dictation about a trip should update the existing trip file, not create a duplicate.
@@ -70,7 +70,7 @@ Unknown entities might be:
 
 **Missing the multi-person signal.** When an interaction involves multiple people, EACH person's file needs a timeline entry. See `person-intelligence.md`.
 
-**Missing kids' timeline entries.** When an event involves Owen or Alina — even if it's filed under travel, boy-scouts, school, or another domain — ask: "Is this a memory worth preserving on their personal timeline?" If yes, cross-post a summary to their `memories.md` Timeline section. Domain files hold the detail; the kids' timelines hold the personal record.
+**Missing kids' timeline entries.** When an event involves one of the kids — even if it's filed under travel, boy-scouts, school, or another domain — ask: "Is this a memory worth preserving on their personal timeline?" If yes, cross-post a summary to their `memories.md` Timeline section. Domain files hold the detail; the kids' timelines hold the personal record.
 
 **Over-processing.** Not every dictation needs extensive treatment. A quick note about a passing thought can just go in inbox. Match effort to value.
 
