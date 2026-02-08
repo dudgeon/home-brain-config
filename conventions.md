@@ -7,7 +7,7 @@ This document consolidates all file naming, metadata, and linking conventions fo
 ## Folder Structure
 
 - `tasks.md` - All tasks across domains (check at session start!)
-- `domains/` - Life areas (Workshop, Etsy, Board, Family, People, Travel, Food & Drink, House, Brain, Interests, Professional Development)
+- `domains/` - Life areas (Workshop, Etsy, Board, Family, People, Travel, Food & Drink, House, Brain, Projects, Interests, Professional Development)
 - `context/` - Cross-domain context files for Claude
 - `decisions/` - Decision records
 - `inbox/` - Items arriving for Claude to process (not a general dumping ground)
