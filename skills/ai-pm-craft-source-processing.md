@@ -68,26 +68,33 @@ Trigger: User says "I read [source]" or "mark X as read"
 
 Trigger: User says "process this", "extract ideas from X", or batch processing
 
-This is the judgment-heavy step. Think carefully.
+This is the judgment-heavy step. Think carefully. **Before processing, read `meta/taxonomy.md`** for the full classification reference.
 
 1. **Read the source thoroughly** — understand the full argument, not just highlights
 2. **Identify discrete ideas**: Each source contains multiple ideas. An "idea" is:
    - A named technique or method (→ `technique`)
    - A framework for thinking about problems (→ `mental-model`)
    - An observation, principle, or non-obvious pattern (→ `insight`)
-3. **For each idea, decide**: Is this genuinely new to the knowledge base, or a restatement of something already captured?
-   - **New idea**: Create knowledge entry from `templates/knowledge-entry.md` in appropriate `knowledge/` subfolder (`techniques/`, `mental-models/`, or `insights/`)
+3. **Classify each idea** using the taxonomy (see `meta/taxonomy.md`):
+   - **Domain**: Does it augment a specific lifecycle phase? → `product-lifecycle`. Portable skill? → `horizontal`. About org change? → `ai-adoption`.
+   - **Phase** (product-lifecycle only): Which of the six phases — discover, frame, shape, build, release, measure?
+   - **Component** (optional): What specific component within the phase? Use the component slug from the taxonomy. Omit if the entry fits the phase generally but not a specific component.
+4. **For each idea, decide**: Is this genuinely new to the knowledge base, or a restatement of something already captured?
+   - **New idea**: Create knowledge entry from `templates/knowledge-entry.md` in the appropriate domain folder:
+     - Product lifecycle: `knowledge-base/product-lifecycle/{phase}/`
+     - Horizontal: `knowledge-base/horizontal/`
+     - AI adoption: `knowledge-base/ai-adoption/`
    - **Existing idea with new perspective**: Update existing knowledge entry — add new source citation to the Sources section, enrich Summary or How to Apply if this source adds something genuinely new
    - **Restatement with nothing new**: Just add a citation to the existing entry's Sources section
-4. **Write the citation block** for each idea×source pairing:
+5. **Write the citation block** for each idea×source pairing:
    - Extract the best quote that demonstrates the idea
    - **Attribution**: Name the person who stated the idea. For interview sources, this is usually the guest (the `author` field), not the host. If the host contributes an idea worth extracting, attribute it to them explicitly.
    - Write "What this source adds" — how this specific source's framing is unique or useful
    - Include both original URL and archive wikilink
-5. **Update the source file**: Fill in `## Key Ideas Extracted` with links to each knowledge entry. Set `status: processed`.
-6. **Update `sources/_index.md`**: Move to Processed section, fill in "Ideas Extracted" column
-7. **Update ai-pm-craft README.md Knowledge Map**: Add new entries under appropriate headings. If no heading fits, place under Uncategorized and flag for the user.
-8. **Update ai-pm-craft README.md reading queue**: Move to "Recently Processed"
+6. **Update the source file**: Fill in `## Key Ideas Extracted` with links to each knowledge entry. Set `status: processed`.
+7. **Update `sources/_index.md`**: Move to Processed section, fill in "Ideas Extracted" column
+8. **Update ai-pm-craft README.md Knowledge Map**: Add new entries under appropriate phase/domain headings
+9. **Update ai-pm-craft README.md reading queue**: Move to "Recently Processed"
 
 ### Review Reading Queue
 
@@ -121,7 +128,7 @@ This **skips the source file step entirely** — there's no external source to a
      - Enrich Summary or How to Apply if the user's framing adds something new
      - Do NOT create a duplicate entry
    - **No match** → Create new knowledge entry (step 3)
-3. **Create knowledge entry** from `templates/knowledge-entry.md` in appropriate `knowledge/` subfolder
+3. **Create knowledge entry** from `templates/knowledge-entry.md` in appropriate `knowledge-base/` subfolder
    - Set `origin: organic`
    - Use the **Origin** section (not Sources): Context, How you use it, Why it works
    - Status starts at `draft` — but organic entries backed by extensive personal experience may start at `solid`
@@ -161,7 +168,7 @@ Featured entries are techniques worth championing organizationally — candidate
 
 **The Knowledge Map is the consumption layer.** Individual entries are powerful but hard to browse. The ai-pm-craft README's Knowledge Map is what makes the knowledge base navigable. Every new or moved entry must be reflected there.
 
-**Respect the hierarchy.** Place entries in the most specific applicable section of the Knowledge Map. If it doesn't fit, put it in Uncategorized and flag it — the hierarchy may need to evolve.
+**Respect the taxonomy.** Place entries in the most specific applicable phase/component. Use `meta/taxonomy.md` as the canonical reference. If it doesn't fit, flag it for review.
 
 ---
 
@@ -217,14 +224,25 @@ Quick notes — ideas, techniques, learning goals — that are nascent and not y
 - Organic (user-authored drafts, case studies, reflections)
 - Notes (quick ideas, nascent techniques, learning goals — user-originated, pre-corroboration)
 
-## Knowledge Map Sections
+## Taxonomy Reference
 
-Two axes:
+**Full reference**: `domains/professional-development/ai-pm-craft/meta/taxonomy.md`
+**Lifecycle framework**: `domains/professional-development/ai-pm-craft/meta/lifecycle-framework-v2.md`
 
-**Product Lifecycle** (vertical — @user to provide definitive framework):
-Strategy & Vision, Shipping & Execution, Evaluation & Measurement, UX & Design
+Three domains, six lifecycle phases:
 
-**Horizontal Skills** (cut across lifecycle stages):
-Prompt Engineering, Working with Agentic Systems, Change Management & Adoption
+| Domain | Folder | Classification test |
+|---|---|---|
+| **Product Lifecycle** | `knowledge-base/product-lifecycle/{phase}/` | Augments a specific lifecycle phase |
+| **Horizontal** | `knowledge-base/horizontal/` | Portable skill, applicable regardless of phase |
+| **AI Adoption** | `knowledge-base/ai-adoption/` | About bringing others along or changing how teams/orgs work |
 
-When placing an entry, first ask: is this about a *stage* of building a product (→ Product Lifecycle), or is it a *skill* that applies regardless of stage (→ Horizontal)? Prompt engineering = specific patterns for getting better AI outputs. Working with agentic systems = the meta-process of designing, evaluating, and refining human-AI collaboration.
+**Lifecycle phases**: Discover → Frame → Shape → Build → Release → Measure
+
+Each phase has named components (see `meta/taxonomy.md` for the full list with slugs). Use the most specific component that fits. If the entry fits the phase but not a specific component, omit `component` from frontmatter.
+
+**Placement rules**:
+1. Most specific component wins
+2. Phase-level is OK when no component fits
+3. Cross-phase entries (3+ phases) → horizontal
+4. Screen every source for adoption insights alongside craft techniques
