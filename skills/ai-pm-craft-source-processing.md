@@ -90,7 +90,7 @@ This is the judgment-heavy step. Think carefully. **Before processing, read `met
    - Extract the best quote that demonstrates the idea
    - **Attribution**: Name the person who stated the idea. For interview sources, this is usually the guest (the `author` field), not the host. If the host contributes an idea worth extracting, attribute it to them explicitly.
    - Write "What this source adds" — how this specific source's framing is unique or useful
-   - Include both original URL and archive wikilink
+   - Include both original URL and archive relative markdown link
 6. **Update the source file**: Fill in `## Key Ideas Extracted` with links to each knowledge entry. Set `status: processed`.
 7. **Update `sources/_index.md`**: Move to Processed section, fill in "Ideas Extracted" column
 8. **Update ai-pm-craft README.md Knowledge Map**: Add new entries under appropriate phase/domain headings

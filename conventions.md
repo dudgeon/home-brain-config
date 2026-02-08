@@ -158,8 +158,8 @@ Increment version when making structural changes. Add changelog entry describing
 
 ## Linking Conventions
 
-- Use `[[wikilinks]]` for internal links: `[[project-name]]`
-- Use relative paths for folder references: `[Link](../other-domain/note.md)`
+- **Use relative markdown links** for all internal links: `[project-name](path/to/project-name.md)`
+- This is a GitHub repo, not Obsidian — `[[wikilinks]]` don't render and should not be used
 - Always link related concepts - over-linking is better than under-linking
 - When creating a note, check for and add relevant backlinks
 
@@ -173,7 +173,7 @@ When creating new notes:
 2. **Use templates** when available (see `templates/`)
 3. **Add frontmatter** with metadata (date, tags, status)
 4. **Create in the right domain** - Don't put everything in inbox
-5. **Link to related notes** using `[[wikilinks]]`
+5. **Link to related notes** using relative markdown links
 
 ---
 
