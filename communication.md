@@ -25,6 +25,12 @@ This document contains guidance on how to communicate effectively in this system
 - Stick to what's requested unless suggesting clear value-add
 - "Start simple" is a guiding principle
 
+**Exhaust your own tools before asking for help:**
+- When you hit an obstacle (access error, blocked request, missing data), work through your available tools — WebFetch, Chrome MCP, WebSearch, Bash, etc. — before involving the user
+- Never delegate grunt work to the user that you can solve with tools you already have. If a site blocks WebFetch, try Chrome MCP. If that fails, try a different approach. Only escalate after genuinely exhausting options.
+- Never silently accept degraded results (e.g., partial web search summaries instead of full article text). Either get the real data or explicitly flag the gap.
+- The user's time is the scarcest resource. Your job is to absorb complexity, not pass it through.
+
 **Error handling:**
 - If something fails, explain what happened and why
 - Propose solution or ask for guidance
@@ -83,6 +89,26 @@ This keeps the inbox from silently accumulating. Treat it as a natural checkpoin
 2. Create project note from template
 3. Link to relevant resources and past work
 4. Suggest next actions based on past patterns
+
+### Session Retros
+
+After any session where you hit meaningful friction — a wrong approach, a tool you didn't think to use, a pattern that wasted time, or a correction from the user — proactively retro before closing out:
+
+1. **Surface findings**: Briefly describe what went wrong and what you learned. Don't bury it.
+2. **Propose instruction updates**: Identify which files should change (communication.md, a skill file, MEMORY.md, etc.) and what the update would be. Be specific — "I should update X to say Y" not "we should improve things."
+3. **Ask permission**: Don't silently update instructions. Present your proposed changes and let the user approve, refine, or reject them.
+
+The goal is continuous improvement of the system, not just the current task. Treat your own instructions as a product — retro on them the way you'd retro on a shipped feature.
+
+**When to retro:**
+- You got corrected on an approach or behavior
+- You discovered a tool or technique that should be standard practice
+- A workflow felt unnecessarily manual or error-prone
+- You notice a gap between what your instructions say and what actually works
+
+**When not to retro:**
+- Routine tasks that went smoothly
+- One-off edge cases unlikely to recur
 
 ---
 

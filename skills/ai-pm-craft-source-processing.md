@@ -38,7 +38,7 @@ Trigger: User shares content (link, text, dictation about something they found)
 
 1. **Determine source metadata**: title, author, host (if interview), source_url, source_type, published date
    - **Attribution rule**: `author` = the primary voice whose ideas the source captures. For interviews/podcasts, this is the **guest**, not the host. The host goes in the `host` field. For multi-guest interviews, use the most relevant guest or comma-separate.
-2. **Fetch content if possible**: Use the source URL to retrieve the full text/transcript. If blocked, note that raw content needs manual capture.
+2. **Fetch content**: Use the source URL to retrieve the full text/transcript. If `WebFetch` fails (403, paywall, etc.), fall back to Chrome MCP tools (`tabs_context_mcp` → `navigate` → `wait` → `get_page_text`) which use the user's authenticated browser session. If Chrome MCP also fails, try `WebSearch` for cached/alternative versions. Only flag for manual capture after exhausting all three approaches.
 3. **Generate triage summary**: Read the raw content and write a succinct summary for the frontmatter `summary` field. This is for quick triage — helping decide what's worth reading — not deep analysis.
    - **Tone**: Dense, concise, no fluff. Acronyms OK. Think "what would I need to know to decide whether to read this?"
    - **Focus**: Key claims, frameworks, or takeaways. What's novel or contrarian? What's the author's main argument?
