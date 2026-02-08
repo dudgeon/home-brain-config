@@ -44,6 +44,7 @@ The goal is a knowledge base that's smarter than raw notes—one that anticipate
 ✗ Create excessive nested folders
 ✗ Use proprietary formats or complex syntax
 ✗ Add unnecessary complexity
+✗ Create indexes or registries without justifying the specific need — define the exact problem an index solves, scope it tightly to that problem, and verify existing structure doesn't already handle it. Indexes go stale; prefer leveraging the natural structure (context files, domain folders, person files) over maintaining parallel lookup layers.
 
 ---
 
