@@ -78,6 +78,38 @@ This ensures the system captures relationship context across all relevant person
 
 ---
 
+## Person Enrichment Checklist
+
+**When adding information to a person file** — whether from user conversation, web research, inbox items, or any other source — run through this checklist before considering the update complete:
+
+### 1. Timeline extraction
+Scan all available information for date-anchored events and add them to the Timeline section:
+- Career milestones (new jobs, promotions, departures, founding companies)
+- Life events (marriage, kids, moves, graduations, deaths)
+- Notable achievements or publications
+- Significant shared experiences with the user
+
+### 2. Cross-references
+- Link to other person files mentioned (family, colleagues, friends)
+- Update *those* files with reciprocal links/context if meaningful
+- Update `context/family.md` if the person is family or a close contact not yet listed
+
+### 3. Profile completeness
+- Fill in all applicable Profile fields (don't leave blanks when the data is available)
+- Distinguish evergreen info (Profile) from point-in-time info (Timeline)
+- Update "Current Life" to reflect the latest known state
+
+### 4. Filename consistency
+- Person files should be named `firstname-lastname.md` when the last name is known
+- Rename (via `git mv`) if a file was created with just a first name and the last name is now known
+
+### 5. Sensitivity and tone
+- Wealth, net worth, and financial details: capture career milestones (IPO, founding) but avoid specific valuations or net worth figures unless the user requests them
+- This is a personal knowledge base, not a Wikipedia article — prioritize what matters to the user's relationship with this person
+- For public figures who are also personal contacts, lead with the personal relationship, not the public biography
+
+---
+
 ## When to Create Person Files
 
 Create a person file when:
