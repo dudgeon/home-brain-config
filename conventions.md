@@ -89,13 +89,14 @@ Source material captured for learning projects (articles, videos, podcasts, etc.
 created: 2026-02-05
 updated: 2026-02-05
 template: templates/source.md
-template_version: 2
+template_version: 3
 tags: [source, ai-pm-craft]
 status: unread
 source_type: article
 source_url: "https://example.com/original-article"
 archive_url: "domains/professional-development/ai-pm-craft/sources/2026-02-05-slug.md"
-author: "Author Name"
+author: "Guest Name"
+host: "Interviewer Name"
 published: 2026-02-05
 discovered: 2026-02-05
 summary: "Dense triage summary generated at ingestion. Key claims, frameworks, takeaways."
@@ -108,6 +109,8 @@ project: ai-pm-craft
 - `archive_url` — Path to the local copy in this repo (permanent)
 - `source_type` — One of: `article`, `video`, `podcast`, `newsletter`, `tweet-thread`, `book-chapter`, `organic`, `note`
 - `status` — Reading lifecycle: `unread` → `reading` → `read` → `processed`
+- `author` — Primary voice whose ideas this captures. For interviews: the **guest**. For articles: the writer.
+- `host` — Interviewer or show host. Omit for single-author formats.
 - `summary` — Triage summary auto-generated at ingestion. Dense, concise, focused on key insights. Enables quick queue review without reading source body. Distinct from the `## Summary` body section, which is filled post-reading with the user's own take.
 - `project` — Which learning project this source belongs to
 
@@ -120,10 +123,12 @@ Synthesized ideas extracted from sources use `templates/knowledge-entry.md`:
 created: 2026-02-05
 updated: 2026-02-05
 template: templates/knowledge-entry.md
-template_version: 1
+template_version: 2
 tags: [knowledge, ai-pm-craft]
 status: draft
 entry_type: technique
+origin: sourced
+featured: false
 domain: professional-development
 project: ai-pm-craft
 ---
@@ -131,6 +136,8 @@ project: ai-pm-craft
 
 - `entry_type` — One of: `technique`, `mental-model`, `insight`
 - `status` — Maturity: `draft` → `solid` → `canonical`
+- `origin` — `sourced` (from external sources), `organic` (from personal experience), `both` (organic + later found in sources)
+- `featured` — Techniques worth championing organizationally — candidates for collateral building and adoption storytelling
 
 ### Template Files
 

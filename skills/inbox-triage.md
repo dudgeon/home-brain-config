@@ -96,7 +96,9 @@ Some inbox items are pre-tagged for specific learning projects. These bypass gen
 
 Check frontmatter for `project:` field. Currently recognized projects:
 
-- **`project: ai-pm-craft`** → Route to the `ai-pm-craft-source-processing` skill. This is source material (article, video, tweet thread, etc.) for the AI PM Craft learning project. Do NOT process generically — instead, follow the "Add New Source" workflow in `.claude/skills/ai-pm-craft-source-processing.md`, which handles source file creation, index updates, and reading queue management.
+- **`project: ai-pm-craft`** → Route to the `ai-pm-craft-source-processing` skill. Do NOT process generically. Determine which workflow to use:
+  - **Has a source URL** (in frontmatter or body) → "Add New Source" workflow. This is external source material (article, video, tweet thread, etc.) to archive and add to the reading queue.
+  - **No source URL** (describes a technique/idea from personal experience) → "Add Organic Technique" workflow. This creates or enriches a knowledge entry directly, skipping the source file step.
 
 ### How Items Get Tagged
 
@@ -105,7 +107,7 @@ Users may tag inbox items themselves, or mention the project when dropping somet
 - Tags include `ai-pm-craft` or `ai-pm-craft-source`
 - Note content mentions "for the pm project", "ai pm craft", or similar
 
-When in doubt about whether an item is a learning source for a known project, ask rather than processing generically.
+When in doubt about whether an item is for a known project, ask rather than processing generically.
 
 ---
 

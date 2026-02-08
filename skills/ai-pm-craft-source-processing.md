@@ -1,6 +1,6 @@
 ---
 name: ai-pm-craft-source-processing
-description: Process source material for the AI PM Craft learning project. Use when user says "add this source", "I read this", "process this source", "extract ideas from this", "what's in my reading queue", or when an inbox item is tagged with project ai-pm-craft. This skill is specific to the ai-pm-craft project in domains/professional-development/ai-pm-craft/.
+description: Process source material for the AI PM Craft learning project. Use when the user mentions "ai-pm-craft", "pm project", or "pm craft" alongside source actions (add, read, process, extract, queue, status). Also use when inbox triage encounters items tagged project:ai-pm-craft. This skill is SPECIFIC to the ai-pm-craft project in domains/professional-development/ai-pm-craft/ — do not use for generic source handling.
 ---
 
 # AI PM Craft — Source Processing
@@ -16,6 +16,8 @@ Handling the lifecycle of external source material — from capture through read
 - User shares a link, article, video, or content to capture for ai-pm-craft
 - User wants to mark something as read or add reading notes for ai-pm-craft
 - User asks to process/extract ideas from an ai-pm-craft source
+- User wants to capture an organic technique (from their own experience, no external source)
+- User wants to mark a knowledge entry as featured
 - Inbox triage encounters an item tagged `project: ai-pm-craft`
 - User asks about their ai-pm-craft reading queue or source status
 - User asks to update the ai-pm-craft knowledge base from recent reading
@@ -34,7 +36,8 @@ Every source captured should eventually be **read, understood, and its discrete 
 
 Trigger: User shares content (link, text, dictation about something they found)
 
-1. **Determine source metadata**: title, author, source_url, source_type, published date
+1. **Determine source metadata**: title, author, host (if interview), source_url, source_type, published date
+   - **Attribution rule**: `author` = the primary voice whose ideas the source captures. For interviews/podcasts, this is the **guest**, not the host. The host goes in the `host` field. For multi-guest interviews, use the most relevant guest or comma-separate.
 2. **Fetch content if possible**: Use the source URL to retrieve the full text/transcript. If blocked, note that raw content needs manual capture.
 3. **Generate triage summary**: Read the raw content and write a succinct summary for the frontmatter `summary` field. This is for quick triage — helping decide what's worth reading — not deep analysis.
    - **Tone**: Dense, concise, no fluff. Acronyms OK. Think "what would I need to know to decide whether to read this?"
@@ -78,6 +81,7 @@ This is the judgment-heavy step. Think carefully.
    - **Restatement with nothing new**: Just add a citation to the existing entry's Sources section
 4. **Write the citation block** for each idea×source pairing:
    - Extract the best quote that demonstrates the idea
+   - **Attribution**: Name the person who stated the idea. For interview sources, this is usually the guest (the `author` field), not the host. If the host contributes an idea worth extracting, attribute it to them explicitly.
    - Write "What this source adds" — how this specific source's framing is unique or useful
    - Include both original URL and archive wikilink
 5. **Update the source file**: Fill in `## Key Ideas Extracted` with links to each knowledge entry. Set `status: processed`.
@@ -102,6 +106,36 @@ Trigger: "What haven't I covered?", "where are the gaps?", "what topics need mor
 2. For each section, assess: How many entries? How well-sourced (single source vs. multi-source)?
 3. Identify thin areas: sections with few entries or entries backed by only one source
 4. Report gaps and suggest what types of sources might fill them
+
+### Add Organic Technique
+
+Trigger: User describes a technique from their own experience, not from an external source. Typically arrives via inbox (tagged `project: ai-pm-craft` with no source URL) or directly ("add this organic technique to ai-pm-craft").
+
+This **skips the source file step entirely** — there's no external source to archive.
+
+1. **Understand the technique**: Ask clarifying questions if the description is vague. You need enough to write the Summary, How to Apply, and Origin sections.
+2. **Check for existing entries**: Search the knowledge base for entries that describe the same or substantially similar idea.
+   - **Match found** → Add the user's organic perspective to the existing entry:
+     - Add an Origin section alongside the existing Sources section
+     - Update `origin` to `both`
+     - Enrich Summary or How to Apply if the user's framing adds something new
+     - Do NOT create a duplicate entry
+   - **No match** → Create new knowledge entry (step 3)
+3. **Create knowledge entry** from `templates/knowledge-entry.md` in appropriate `knowledge/` subfolder
+   - Set `origin: organic`
+   - Use the **Origin** section (not Sources): Context, How you use it, Why it works
+   - Status starts at `draft` — but organic entries backed by extensive personal experience may start at `solid`
+4. **Update ai-pm-craft README.md Knowledge Map**: Add new entry under appropriate heading (or note enrichment of existing entry in progress log)
+5. **Note for future**: If external sources are later found that discuss this idea, add a Sources section alongside Origin and update `origin` to `both`
+
+### Mark as Featured
+
+Trigger: User says "this one is important", "feature this", "mark X as featured in ai-pm-craft", "this deserves adoption"
+
+Featured entries are techniques worth championing organizationally — candidates for collateral building and adoption storytelling.
+
+1. **Update frontmatter**: Set `featured: true` on the knowledge entry
+2. **Update ai-pm-craft README.md Knowledge Map**: Add **★** marker to the entry so it stands out visually
 
 ---
 
@@ -137,7 +171,9 @@ Trigger: "What haven't I covered?", "where are the gaps?", "what topics need mor
 
 **Under-extracting from rich sources.** A source with three workflows likely contains 5-8 discrete ideas, not 3. Look for: the overarching insight *and* each individual technique *and* any broadly applicable sub-techniques (e.g., a prompting pattern that works beyond the specific use case described).
 
-**Missing lineage.** Every claim in a knowledge entry should trace to a source. If you're synthesizing from your own reasoning (not from sources), mark it clearly as editorial.
+**Missing lineage.** Every claim in a sourced knowledge entry should trace to a source. For organic entries, the Origin section is the lineage — make sure it explains where the idea comes from in practice.
+
+**Attribution precision.** In interview sources, ideas belong to the person who stated them. Don't attribute a guest's insight to the host's show. When the host does contribute a genuine idea, call that out explicitly.
 
 **Stale reading queue.** Sources sitting at "unread" for weeks are a signal. Surface them proactively.
 
