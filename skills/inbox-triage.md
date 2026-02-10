@@ -111,14 +111,49 @@ When in doubt about whether an item is for a known project, ask rather than proc
 
 ---
 
+## Email Forward Handling
+
+Forwarded emails have a lower signal-to-noise ratio than user-authored notes. Don't treat them like curated content — most of the text is filler.
+
+### Step 1: Classify the item
+
+For each inbox item, determine its type:
+
+- **User-authored note** (no forwarded email headers) → process normally using the workflow below
+- **Annotated email forward** (user wrote instructions above the forwarded content) → follow the user's instructions to process. The annotation is the signal; the email is supporting context.
+- **Unannotated email forward** (forwarded email with no user guidance) → **stop and ask before processing** (see Step 2)
+
+### Step 2: Ask before processing unannotated forwards
+
+Summarize the email in 2-3 bullets, then ask:
+
+> Here's what's in this email: [summary bullets]
+>
+> What do you want captured?
+> 1. Specific facts or contact info → file in the relevant domain
+> 2. Upcoming dates/events → add to relevant calendar/tracking note
+> 3. Store as reference → file the email as-is in the relevant domain
+> 4. Nothing useful → discard
+
+Wait for a response before processing.
+
+### Step 3: Default events/dates as uncommitted
+
+Any dates or events extracted from third-party emails (newsletters, eblasts, group communications) should be marked as **uncommitted/available** by default — not as the user's or family member's plans.
+
+**Exception**: If entity search during triage finds evidence of a prior commitment (e.g., a note saying "Owen signed up for Sea Base"), mark as committed.
+
+---
+
 ## Processing Inbox Workflow
 
 When processing inbox (whether prompted or as post-task check):
 1. Read each note
-2. **Check for project tags** — if tagged for a specific project, hand off to that project's processing skill (see above)
-3. Detect new or existing entities (see above)
-4. Add proper metadata
-5. Create links to related notes
-6. Move to appropriate domain folder (or merge into existing note)
-7. Update INDEX.md if significant
-8. Archive processed item to `_archive/YYYY-Www/`
+2. **Classify the item** — user note, annotated forward, or unannotated forward (see Email Forward Handling above)
+3. **Check for project tags** — if tagged for a specific project, hand off to that project's processing skill (see above)
+4. Detect new or existing entities (see above)
+5. Add proper metadata
+6. Create links to related notes
+7. Move to appropriate domain folder (or merge into existing note)
+8. Update INDEX.md if significant
+9. Archive processed item to `_archive/YYYY-Www/`
