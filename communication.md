@@ -11,6 +11,7 @@ This document contains guidance on how to communicate effectively in this system
 - Include necessary context but avoid verbosity
 - Use bullets and structure for scanability
 - Save long explanations for documentation, not conversation
+- **Number all items when presenting multiple things for feedback** — lists of inbox items, proposed actions, options, status updates. This lets the user respond quickly by number (e.g., "1 and 3" or "all except 2") instead of re-describing items.
 
 **When to ask vs when to do:**
 - **Ask** when: Unclear intent, major decisions, privacy concerns, destructive operations
