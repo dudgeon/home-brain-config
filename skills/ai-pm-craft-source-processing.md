@@ -76,13 +76,19 @@ This is the judgment-heavy step. Think carefully. **Before processing, read `met
    - A framework for thinking about problems (→ `mental-model`)
    - An observation, principle, or non-obvious pattern (→ `insight`)
 3. **Classify each idea** using the taxonomy (see `meta/taxonomy.md`):
-   - **Domain**: Does it augment a specific lifecycle phase? → `product-lifecycle`. Portable skill? → `horizontal`. About org change? → `ai-adoption`.
-   - **Phase** (product-lifecycle only): Which of the six phases — discover, frame, shape, build, release, measure?
-   - **Component** (optional): What specific component within the phase? Use the component slug from the taxonomy. Omit if the entry fits the phase generally but not a specific component.
+   - **Domain**: Does it augment a specific lifecycle phase? → `product-lifecycle`. Cross-cutting skill, methodology, or knowledge area? → `horizontal`. About org change? → `ai-adoption`.
+   - **Phase** (product-lifecycle, required): Which of the six phases — discover, frame, shape, build, release, measure?
+   - **Component** (product-lifecycle, optional): What specific component within the phase? Use the component slug from the taxonomy. Omit if the entry fits the phase generally but not a specific component.
+   - **Horizontal domain** (horizontal, required): Which sub-domain?
+     - `practices` — atomic portable technique (prompting pattern, workflow step, collaboration pattern)
+     - `software-delivery` — delivery methodology (compound engineering, spec-driven dev, vibe coding)
+     - `agent-lifecycle` — managing agents as participants (selection, onboarding, feedback, performance)
+     - `knowledge-management` — shared human-agent context systems (curation, access, knowledge-as-product)
+   - **Lifecycle phase** (horizontal, optional): If the horizontal entry has a primary phase connection, record it for dual attribution.
 4. **For each idea, decide**: Is this genuinely new to the knowledge base, or a restatement of something already captured?
    - **New idea**: Create knowledge entry from `templates/knowledge-entry.md` in the appropriate domain folder:
      - Product lifecycle: `knowledge-base/product-lifecycle/{phase}/`
-     - Horizontal: `knowledge-base/horizontal/`
+     - Horizontal: `knowledge-base/horizontal/{horizontal_domain}/`
      - AI adoption: `knowledge-base/ai-adoption/`
    - **Existing idea with new perspective**: Update existing knowledge entry — add new source citation to the Sources section, enrich Summary or How to Apply if this source adds something genuinely new
    - **Restatement with nothing new**: Just add a citation to the existing entry's Sources section
@@ -160,6 +166,10 @@ Featured entries are techniques worth championing organizationally — candidate
 
 **Screen for change management and adoption.** Sources often embed insights about how leaders drive adoption of AI-native skills alongside the craft techniques themselves. These are easy to overlook because they feel like "context" rather than "content" — but they're independently valuable. Examples: framing AI skills as mandatory for one's next job (urgency creation), running live demos to shift skeptics (show-don't-tell adoption), pairing resisters with early adopters (social proof). When you find these, extract them as knowledge entries under the Change Management & Adoption section. The test: is this about *how to bring others along* rather than *how to do the craft yourself*?
 
+**Screen for horizontal domain insights.** Sources about delivery workflows often embed insights about agent management, knowledge systems, or delivery methodologies that deserve their own entries. A source about "how we built X with AI agents" may contain: (1) lifecycle-phase techniques (Build), (2) a delivery methodology insight (Software Delivery), (3) an agent onboarding pattern (Agent Lifecycle), and (4) a context engineering strategy (Knowledge Management). Extract each into the appropriate horizontal domain. The test: is this about a *portable technique* (→ Practices), a *delivery methodology* (→ Software Delivery), *managing agents over time* (→ Agent Lifecycle), or *knowledge systems* (→ Knowledge Management)?
+
+**Distinguish atomic techniques from domain knowledge.** A single prompting pattern you could use tomorrow in any context → Practices. A named delivery methodology with proponents, tradeoffs, and organizational implications → Software Delivery. A strategy for agent management across a project lifecycle → Agent Lifecycle. A system for curating and accessing shared context → Knowledge Management. When in doubt, start with the more specific horizontal domain — it's easier to generalize later than to untangle a technique from its domain context.
+
 **Lineage is the whole point.** The knowledge entry is the synthesis, but its value comes from being able to trace back to specific quotes and demonstrations in specific sources. Don't skimp on citations.
 
 **Don't duplicate, enrich.** When a new source discusses an idea that already has a knowledge entry, resist creating a new entry. Instead, add the new source's perspective to the existing entry. The entry gets richer over time.
@@ -229,20 +239,31 @@ Quick notes — ideas, techniques, learning goals — that are nascent and not y
 **Full reference**: `domains/professional-development/ai-pm-craft/meta/taxonomy.md`
 **Lifecycle framework**: `domains/professional-development/ai-pm-craft/meta/lifecycle-framework-v2.md`
 
-Three domains, six lifecycle phases:
+Three domains, six lifecycle phases, four horizontal domains:
 
 | Domain | Folder | Classification test |
 |---|---|---|
 | **Product Lifecycle** | `knowledge-base/product-lifecycle/{phase}/` | Augments a specific lifecycle phase |
-| **Horizontal** | `knowledge-base/horizontal/` | Portable skill, applicable regardless of phase |
+| **Horizontal** | `knowledge-base/horizontal/{horizontal_domain}/` | Cross-cutting skill, methodology, or knowledge area |
 | **AI Adoption** | `knowledge-base/ai-adoption/` | About bringing others along or changing how teams/orgs work |
 
 **Lifecycle phases**: Discover → Frame → Shape → Build → Release → Measure
 
-Each phase has named components (see `meta/taxonomy.md` for the full list with slugs). Use the most specific component that fits. If the entry fits the phase but not a specific component, omit `component` from frontmatter.
+**Horizontal domains**:
+
+| Horizontal Domain | Slug | Classification test |
+|---|---|---|
+| Practices | `practices` | Atomic, portable technique applicable across 3+ phases |
+| Software Delivery | `software-delivery` | Delivery methodology or how software gets built |
+| Agent Lifecycle | `agent-lifecycle` | Managing agents as ongoing participants |
+| Knowledge Management | `knowledge-management` | Shared human-agent context systems |
+
+Each lifecycle phase has named components (see `meta/taxonomy.md` for the full list with slugs). Use the most specific component that fits. If the entry fits the phase but not a specific component, omit `component` from frontmatter.
 
 **Placement rules**:
-1. Most specific component wins
+1. Most specific component wins (lifecycle) or most specific horizontal domain wins (horizontal)
 2. Phase-level is OK when no component fits
-3. Cross-phase entries (3+ phases) → horizontal
-4. Screen every source for adoption insights alongside craft techniques
+3. Cross-phase entries (3+ phases) → horizontal (then determine which horizontal domain)
+4. Horizontal entries can optionally reference a `lifecycle_phase` for dual attribution
+5. Screen every source for adoption insights alongside craft techniques
+6. Screen every source for horizontal domain insights (delivery methodologies, agent management, knowledge patterns)
