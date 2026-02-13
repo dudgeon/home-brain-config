@@ -50,7 +50,7 @@ Trigger: User shares content (link, text, dictation about something they found)
    - Fill in all known frontmatter, including `summary` from step 3
    - Place raw content under `## Raw Content`
    - `archive_url` = the GitHub path to this file (relative to repo root)
-5. **Update `sources/_index.md`**: Add row to the All Sources table and the Unread section
+5. **Update `sources/README.md`**: Add row to the All Sources table and the Unread section
 6. **Update the ai-pm-craft README.md reading queue section**: Add to "Up Next (Unread)"
 
 ### Mark Source as Read
@@ -60,7 +60,7 @@ Trigger: User says "I read [source]" or "mark X as read"
 1. **Update source frontmatter**: `status: read`, update `updated` date
 2. **Add summary**: If user provides thoughts, fill the Summary section. If not, generate a brief summary from the raw content and ask user to validate.
 3. **Add notes**: Capture any user annotations, reactions, questions
-4. **Update `sources/_index.md`**: Move from Unread to Read section
+4. **Update `sources/README.md`**: Move from Unread to Read section
 5. **Update ai-pm-craft README.md reading queue**: Move from "Up Next" to appropriate spot
 6. **Flag for processing**: Mention that ideas can now be extracted when ready
 
@@ -92,7 +92,7 @@ This is the judgment-heavy step. Think carefully. **Before processing, read `met
    - Write "What this source adds" — how this specific source's framing is unique or useful
    - Include both original URL and archive relative markdown link
 6. **Update the source file**: Fill in `## Key Ideas Extracted` with links to each knowledge entry. Set `status: processed`.
-7. **Update `sources/_index.md`**: Move to Processed section, fill in "Ideas Extracted" column
+7. **Update `sources/README.md`**: Move to Processed section, fill in "Ideas Extracted" column
 8. **Update ai-pm-craft README.md Knowledge Map**: Add new entries under appropriate phase/domain headings
 9. **Update ai-pm-craft README.md reading queue**: Move to "Recently Processed"
 
@@ -100,7 +100,7 @@ This is the judgment-heavy step. Think carefully. **Before processing, read `met
 
 Trigger: "What's in my queue?", "what should I read?", "reading status"
 
-1. Query `sources/_index.md` for status counts
+1. Query `sources/README.md` for status counts
 2. Report: total sources, unread count, reading count, read-but-unprocessed count, processed count
 3. List unread sources with their frontmatter `summary` fields — these triage summaries give quick context without reading the full source. Read summaries from source file frontmatter directly (no separate index needed).
 4. Highlight any read-but-unprocessed sources (these represent unrealized value)
@@ -208,7 +208,7 @@ Quick notes — ideas, techniques, learning goals — that are nascent and not y
 - **During inbox triage**: Create a source file with `source_type: note`. The note text goes in **Summary** and **Notes** sections — no Raw Content section needed. Set `status: unread`. Author is the user.
 - **Processing**: Notes can be processed immediately since there's nothing to "read" that you haven't already captured. During processing, extract the idea into a `draft` knowledge entry — but **do not elaborate beyond what the note states**. If the note says "pre-mortems might work well for AI feature launches," the entry should capture exactly that level of specificity, not manufacture a full technique description.
 - **Weight**: A note alone keeps a knowledge entry at `draft`. Promotion to `solid` requires corroboration from an external source or the user fleshing out the idea substantially.
-- **Categorization**: Notes appear in `sources/_index.md` like any other source, making them visible during knowledge gap analysis and future processing.
+- **Categorization**: Notes appear in `sources/README.md` like any other source, making them visible during knowledge gap analysis and future processing.
 - **When a real source corroborates a note**: Enrich the existing `draft` knowledge entry with the source's citation, quotes, and framing. Promote to `solid` if the source provides substantial evidence. This is the "don't duplicate, enrich" rule applied to notes.
 
 ---
