@@ -72,6 +72,11 @@ Trigger: User says "process this", "extract ideas from X", or batch processing
 
 This is the judgment-heavy step. Think carefully. **Before processing, read `meta/taxonomy.md`** for the full classification reference.
 
+0. **Verify source completeness**: Before processing, confirm the source file contains full raw content. Check for a `## Raw Content` section and look for signals of truncation (e.g., "partial content" in notes, missing sections, abrupt endings). If the source is incomplete:
+   - **Do not process from partial content.** Incomplete sources produce incomplete knowledge entries — this is worse than not processing at all, because it creates entries that look finished but aren't.
+   - Attempt to fetch full content using the Add New Source fetch chain (WebFetch → Chrome MCP → WebSearch)
+   - If automated approaches fail, **ask the user for browser access** — they can authenticate and unlock paywalled content. This is not delegating work; it's requesting access only they can provide.
+   - Capture full content in the source file before proceeding to step 1
 1. **Read the source thoroughly** — understand the full argument, not just highlights
 2. **Identify discrete ideas**: Each source contains multiple ideas. An "idea" is:
    - A named technique or method (→ `technique`)

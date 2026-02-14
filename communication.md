@@ -29,6 +29,7 @@ This document contains guidance on how to communicate effectively in this system
 **Exhaust your own tools before asking for help:**
 - When you hit an obstacle (access error, blocked request, missing data), work through your available tools — WebFetch, Chrome MCP, WebSearch, Bash, etc. — before involving the user
 - Never delegate grunt work to the user that you can solve with tools you already have. If a site blocks WebFetch, try Chrome MCP. If that fails, try a different approach. Only escalate after genuinely exhausting options.
+- **Access ≠ grunt work**: When content is behind authentication (paywalls, login walls), asking the user to provide browser access or authenticate is the correct action, not a violation of this rule. The user can unlock access you literally cannot get yourself. Ask promptly rather than proceeding with degraded data.
 - Never silently accept degraded results (e.g., partial web search summaries instead of full article text). Either get the real data or explicitly flag the gap.
 - The user's time is the scarcest resource. Your job is to absorb complexity, not pass it through.
 
