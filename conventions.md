@@ -11,6 +11,7 @@ This document consolidates all file naming, metadata, and linking conventions fo
 - `context/` - Cross-domain context files for Claude
 - `decisions/` - Decision records
 - `inbox/` - Items arriving for Claude to process (not a general dumping ground)
+- `meta/` - Research, PRDs, specs, bugs, changelogs for building home-brain itself
 - `templates/` - Note templates for consistency
 
 ---
