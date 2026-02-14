@@ -3,6 +3,8 @@ name: ai-pm-craft-source-processing
 description: Process source material for the AI PM Craft learning project. Use when the user mentions "ai-pm-craft", "pm project", or "pm craft" alongside source actions (add, read, process, extract, queue, status). Also use when inbox triage encounters items tagged project:ai-pm-craft. This skill is SPECIFIC to the ai-pm-craft project in domains/professional-development/ai-pm-craft/ — do not use for generic source handling.
 ---
 
+> **Pattern**: This skill extends [domain-source-synthesis](domain-source-synthesis.md) with domain-specific guidance for the AI PM Craft learning project. The generic skill handles the source lifecycle; this file adds ai-pm-craft's taxonomy, extraction heuristics, and specialized workflows.
+
 # AI PM Craft — Source Processing
 
 Handling the lifecycle of external source material — from capture through reading to knowledge extraction — for the AI PM Craft learning project.
@@ -79,11 +81,11 @@ This is the judgment-heavy step. Think carefully. **Before processing, read `met
    - **Domain**: Does it augment a specific lifecycle phase? → `product-lifecycle`. Cross-cutting skill, methodology, or knowledge area? → `horizontal`. About org change? → `ai-adoption`.
    - **Phase** (product-lifecycle, required): Which of the six phases — discover, frame, shape, build, release, measure?
    - **Component** (product-lifecycle, optional): What specific component within the phase? Use the component slug from the taxonomy. Omit if the entry fits the phase generally but not a specific component.
-   - **Horizontal domain** (horizontal, required): Which sub-domain?
-     - `practices` — atomic portable technique (prompting pattern, workflow step, collaboration pattern)
-     - `software-delivery` — delivery methodology (compound engineering, spec-driven dev, vibe coding)
-     - `agent-lifecycle` — managing agents as participants (selection, onboarding, feedback, performance)
-     - `knowledge-management` — shared human-agent context systems (curation, access, knowledge-as-product)
+   - **Horizontal domain** (horizontal, required): Which stack layer (by delivery mechanism)?
+     - `context` — knowledge infrastructure: making knowledge discoverable and usable (context graphs, agent-oriented KM, progressive disclosure)
+     - `prompting` — portable techniques for crafting effective instructions (works in any chat window)
+     - `gems-and-gpts` — packaged, shareable, non-agentic AI tools (Custom GPTs, Google Gems); building and distributing for teams
+     - `agents` — filesystem-paired, autonomous agents (lifecycle, rules, skills, templates)
    - **Lifecycle phase** (horizontal, optional): If the horizontal entry has a primary phase connection, record it for dual attribution.
 4. **For each idea, decide**: Is this genuinely new to the knowledge base, or a restatement of something already captured?
    - **New idea**: Create knowledge entry from `templates/knowledge-entry.md` in the appropriate domain folder:
@@ -168,9 +170,9 @@ Featured entries are techniques worth championing organizationally — candidate
 
 **Screen for change management and adoption.** Sources often embed insights about how leaders drive adoption of AI-native skills alongside the craft techniques themselves. These are easy to overlook because they feel like "context" rather than "content" — but they're independently valuable. Examples: framing AI skills as mandatory for one's next job (urgency creation), running live demos to shift skeptics (show-don't-tell adoption), pairing resisters with early adopters (social proof). When you find these, extract them as knowledge entries under the Change Management & Adoption section. The test: is this about *how to bring others along* rather than *how to do the craft yourself*?
 
-**Screen for horizontal domain insights.** Sources about delivery workflows often embed insights about agent management, knowledge systems, or delivery methodologies that deserve their own entries. A source about "how we built X with AI agents" may contain: (1) lifecycle-phase techniques (Build), (2) a delivery methodology insight (Software Delivery), (3) an agent onboarding pattern (Agent Lifecycle), and (4) a context engineering strategy (Knowledge Management). Extract each into the appropriate horizontal domain. The test: is this about a *portable technique* (→ Practices), a *delivery methodology* (→ Software Delivery), *managing agents over time* (→ Agent Lifecycle), or *knowledge systems* (→ Knowledge Management)?
+**Screen for horizontal domain insights.** Sources often embed insights across multiple stack layers. A source about "how we built X with AI agents" may contain: (1) lifecycle-phase techniques (Build), (2) a context engineering strategy (Context), (3) a portable prompting pattern (Prompting), and (4) an agent management pattern (Agents). Extract each into the appropriate horizontal domain. The test: is this about *knowledge infrastructure* (→ Context), a *portable technique for any chat window* (→ Prompting), *packaged shareable AI tools* (→ Gems & GPTs), or *autonomous agents* (→ Agents)?
 
-**Distinguish atomic techniques from domain knowledge.** A single prompting pattern you could use tomorrow in any context → Practices. A named delivery methodology with proponents, tradeoffs, and organizational implications → Software Delivery. A strategy for agent management across a project lifecycle → Agent Lifecycle. A system for curating and accessing shared context → Knowledge Management. When in doubt, start with the more specific horizontal domain — it's easier to generalize later than to untangle a technique from its domain context.
+**Match to delivery mechanism.** The horizontal stack is organized by delivery mechanism with increasing capability. A portable prompting pattern you could use tomorrow in any chat window → Prompting. Knowledge infrastructure for making information discoverable to humans and agents → Context. A packaged, distributable AI tool (Custom GPT, Google Gem) → Gems & GPTs. An autonomous agent pattern (lifecycle, execution, management) → Agents. When in doubt, consider where the technique is *delivered* — chat window, knowledge system, packaged tool, or agent runtime.
 
 **Lineage is the whole point.** The knowledge entry is the synthesis, but its value comes from being able to trace back to specific quotes and demonstrations in specific sources. Don't skimp on citations.
 
@@ -255,10 +257,10 @@ Three domains, six lifecycle phases, four horizontal domains:
 
 | Horizontal Domain | Slug | Classification test |
 |---|---|---|
-| Practices | `practices` | Atomic, portable technique applicable across 3+ phases |
-| Software Delivery | `software-delivery` | Delivery methodology or how software gets built |
-| Agent Lifecycle | `agent-lifecycle` | Managing agents as ongoing participants |
-| Knowledge Management | `knowledge-management` | Shared human-agent context systems |
+| Context | `context` | Knowledge infrastructure: making knowledge discoverable and usable |
+| Prompting | `prompting` | Portable technique for crafting effective instructions (works in any chat window) |
+| Gems & GPTs | `gems-and-gpts` | Packaged, shareable, non-agentic AI tools |
+| Agents | `agents` | Filesystem-paired, autonomous agents (lifecycle, management, execution) |
 
 Each lifecycle phase has named components (see `meta/taxonomy.md` for the full list with slugs). Use the most specific component that fits. If the entry fits the phase but not a specific component, omit `component` from frontmatter.
 
