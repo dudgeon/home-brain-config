@@ -91,18 +91,18 @@ created: 2026-02-05
 updated: 2026-02-05
 template: templates/source.md
 template_version: 3
-tags: [source, ai-pm-craft]
+tags: [source, ai-pm]
 status: unread
 source_type: article
 source_url: "https://example.com/original-article"
-archive_url: "domains/professional-development/ai-pm-craft/sources/2026-02-05-slug.md"
+archive_url: "domains/professional-development/ai-pm/sources/2026-02-05-slug.md"
 author: "Guest Name"
 host: "Interviewer Name"
 published: 2026-02-05
 discovered: 2026-02-05
 summary: "Dense triage summary generated at ingestion. Key claims, frameworks, takeaways."
 domain: professional-development
-project: ai-pm-craft
+project: ai-pm
 ---
 ```
 
@@ -125,13 +125,13 @@ created: 2026-02-05
 updated: 2026-02-05
 template: templates/knowledge-entry.md
 template_version: 2
-tags: [knowledge, ai-pm-craft]
+tags: [knowledge, ai-pm]
 status: draft
 entry_type: technique
 origin: sourced
 featured: false
 domain: professional-development
-project: ai-pm-craft
+project: ai-pm
 ---
 ```
 

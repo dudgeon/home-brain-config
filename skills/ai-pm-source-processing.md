@@ -1,28 +1,28 @@
 ---
-name: ai-pm-craft-source-processing
-description: Process source material for the AI PM Craft learning project. Use when the user mentions "ai-pm-craft", "pm project", or "pm craft" alongside source actions (add, read, process, extract, queue, status). Also use when inbox triage encounters items tagged project:ai-pm-craft. This skill is SPECIFIC to the ai-pm-craft project in domains/professional-development/ai-pm-craft/ — do not use for generic source handling.
+name: ai-pm-source-processing
+description: Process source material for the AI PM learning project. Use when the user mentions "ai-pm", "pm project", or "pm craft" alongside source actions (add, read, process, extract, queue, status). Also use when inbox triage encounters items tagged project:ai-pm. This skill is SPECIFIC to the ai-pm project in domains/professional-development/ai-pm/ — do not use for generic source handling.
 ---
 
-> **Pattern**: This skill extends [domain-source-synthesis](domain-source-synthesis.md) with domain-specific guidance for the AI PM Craft learning project. The generic skill handles the source lifecycle; this file adds ai-pm-craft's taxonomy, extraction heuristics, and specialized workflows.
+> **Pattern**: This skill extends [domain-source-synthesis](domain-source-synthesis.md) with domain-specific guidance for the AI PM learning project. The generic skill handles the source lifecycle; this file adds ai-pm's taxonomy, extraction heuristics, and specialized workflows.
 
-# AI PM Craft — Source Processing
+# AI PM — Source Processing
 
-Handling the lifecycle of external source material — from capture through reading to knowledge extraction — for the AI PM Craft learning project.
+Handling the lifecycle of external source material — from capture through reading to knowledge extraction — for the AI PM learning project.
 
-**Project location**: `domains/professional-development/ai-pm-craft/`
+**Project location**: `domains/professional-development/ai-pm/`
 
 ---
 
 ## When This Applies
 
-- User shares a link, article, video, or content to capture for ai-pm-craft
-- User wants to mark something as read or add reading notes for ai-pm-craft
-- User asks to process/extract ideas from an ai-pm-craft source
+- User shares a link, article, video, or content to capture for ai-pm
+- User wants to mark something as read or add reading notes for ai-pm
+- User asks to process/extract ideas from an ai-pm source
 - User wants to capture an organic technique (from their own experience, no external source)
 - User wants to mark a knowledge entry as featured
-- Inbox triage encounters an item tagged `project: ai-pm-craft`
-- User asks about their ai-pm-craft reading queue or source status
-- User asks to update the ai-pm-craft knowledge base from recent reading
+- Inbox triage encounters an item tagged `project: ai-pm`
+- User asks about their ai-pm reading queue or source status
+- User asks to update the ai-pm knowledge base from recent reading
 
 ---
 
@@ -46,14 +46,14 @@ Trigger: User shares content (link, text, dictation about something they found)
    - **Focus**: Key claims, frameworks, or takeaways. What's novel or contrarian? What's the author's main argument?
    - **Length**: 1-3 sentences. Err short.
    - **Not**: Theme extraction, knowledge-base integration, or reading notes. That's for the processing step after reading.
-4. **Create source file** from `templates/source.md` in `domains/professional-development/ai-pm-craft/sources/`
+4. **Create source file** from `templates/source.md` in `domains/professional-development/ai-pm/sources/`
    - Filename: `YYYY-MM-DD-slug.md` (date = discovered date, slug = descriptive)
    - Set `status: unread`
    - Fill in all known frontmatter, including `summary` from step 3
    - Place raw content under `## Raw Content`
    - `archive_url` = the GitHub path to this file (relative to repo root)
 5. **Update `sources/README.md`**: Add row to the All Sources table and the Unread section
-6. **Update the ai-pm-craft README.md reading queue section**: Add to "Up Next (Unread)"
+6. **Update the ai-pm README.md reading queue section**: Add to "Up Next (Unread)"
 
 ### Mark Source as Read
 
@@ -63,7 +63,7 @@ Trigger: User says "I read [source]" or "mark X as read"
 2. **Add summary**: If user provides thoughts, fill the Summary section. If not, generate a brief summary from the raw content and ask user to validate.
 3. **Add notes**: Capture any user annotations, reactions, questions
 4. **Update `sources/README.md`**: Move from Unread to Read section
-5. **Update ai-pm-craft README.md reading queue**: Move from "Up Next" to appropriate spot
+5. **Update ai-pm README.md reading queue**: Move from "Up Next" to appropriate spot
 6. **Flag for processing**: Mention that ideas can now be extracted when ready
 
 ### Process Source → Extract Ideas
@@ -101,8 +101,8 @@ This is the judgment-heavy step. Think carefully. **Before processing, read `met
    - Include both original URL and archive relative markdown link
 6. **Update the source file**: Fill in `## Key Ideas Extracted` with links to each knowledge entry. Set `status: processed`.
 7. **Update `sources/README.md`**: Move to Processed section, fill in "Ideas Extracted" column
-8. **Update ai-pm-craft README.md Knowledge Map**: Add new entries under appropriate phase/domain headings
-9. **Update ai-pm-craft README.md reading queue**: Move to "Recently Processed"
+8. **Update ai-pm README.md Knowledge Map**: Add new entries under appropriate phase/domain headings
+9. **Update ai-pm README.md reading queue**: Move to "Recently Processed"
 
 ### Review Reading Queue
 
@@ -117,14 +117,14 @@ Trigger: "What's in my queue?", "what should I read?", "reading status"
 
 Trigger: "What haven't I covered?", "where are the gaps?", "what topics need more sources?"
 
-1. Review the Knowledge Map headings in ai-pm-craft README.md
+1. Review the Knowledge Map headings in ai-pm README.md
 2. For each section, assess: How many entries? How well-sourced (single source vs. multi-source)?
 3. Identify thin areas: sections with few entries or entries backed by only one source
 4. Report gaps and suggest what types of sources might fill them
 
 ### Add Organic Technique
 
-Trigger: User describes a technique from their own experience, not from an external source. Typically arrives via inbox (tagged `project: ai-pm-craft` with no source URL) or directly ("add this organic technique to ai-pm-craft").
+Trigger: User describes a technique from their own experience, not from an external source. Typically arrives via inbox (tagged `project: ai-pm` with no source URL) or directly ("add this organic technique to ai-pm").
 
 This **skips the source file step entirely** — there's no external source to archive.
 
@@ -140,17 +140,17 @@ This **skips the source file step entirely** — there's no external source to a
    - Set `origin: organic`
    - Use the **Origin** section (not Sources): Context, How you use it, Why it works
    - Status starts at `draft` — but organic entries backed by extensive personal experience may start at `solid`
-4. **Update ai-pm-craft README.md Knowledge Map**: Add new entry under appropriate heading (or note enrichment of existing entry in progress log)
+4. **Update ai-pm README.md Knowledge Map**: Add new entry under appropriate heading (or note enrichment of existing entry in progress log)
 5. **Note for future**: If external sources are later found that discuss this idea, add a Sources section alongside Origin and update `origin` to `both`
 
 ### Mark as Featured
 
-Trigger: User says "this one is important", "feature this", "mark X as featured in ai-pm-craft", "this deserves adoption"
+Trigger: User says "this one is important", "feature this", "mark X as featured in ai-pm", "this deserves adoption"
 
 Featured entries are techniques worth championing organizationally — candidates for collateral building and adoption storytelling.
 
 1. **Update frontmatter**: Set `featured: true` on the knowledge entry
-2. **Update ai-pm-craft README.md Knowledge Map**: Add **★** marker to the entry so it stands out visually
+2. **Update ai-pm README.md Knowledge Map**: Add **★** marker to the entry so it stands out visually
 
 ---
 
@@ -180,7 +180,7 @@ Featured entries are techniques worth championing organizationally — candidate
 
 **Status reflects reality.** If you extracted ideas but didn't create proper knowledge entries, the source isn't "processed" — it's "read." Be honest about status.
 
-**The Knowledge Map is the consumption layer.** Individual entries are powerful but hard to browse. The ai-pm-craft README's Knowledge Map is what makes the knowledge base navigable. Every new or moved entry must be reflected there.
+**The Knowledge Map is the consumption layer.** Individual entries are powerful but hard to browse. The ai-pm README's Knowledge Map is what makes the knowledge base navigable. Every new or moved entry must be reflected there.
 
 **Respect the taxonomy.** Place entries in the most specific applicable phase/component. Use `meta/taxonomy.md` as the canonical reference. If it doesn't fit, flag it for review.
 
@@ -240,8 +240,8 @@ Quick notes — ideas, techniques, learning goals — that are nascent and not y
 
 ## Taxonomy Reference
 
-**Full reference**: `domains/professional-development/ai-pm-craft/meta/taxonomy.md`
-**Lifecycle framework**: `domains/professional-development/ai-pm-craft/meta/lifecycle-framework-v2.md`
+**Full reference**: `domains/professional-development/ai-pm/meta/taxonomy.md`
+**Lifecycle framework**: `domains/professional-development/ai-pm/meta/lifecycle-framework-v2.md`
 
 Three domains, six lifecycle phases, four horizontal domains:
 

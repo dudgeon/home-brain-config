@@ -92,8 +92,8 @@ Every inbox item is a signal. Before routing, ask:
 
 Some inbox items are destined for domains that use the [domain-source-synthesis](domain-source-synthesis.md) pattern. When triaging:
 
-1. **Check for domain/project tags** — if an item is tagged for a specific domain (e.g., `project: ai-pm-craft`), check whether that domain has `pattern: domain-source-synthesis` in its README
-2. **Hand off to the pattern** — route to domain-source-synthesis (or a domain-specific extension like [ai-pm-craft-source-processing](ai-pm-craft-source-processing.md)) for capture rather than filing generically
+1. **Check for domain/project tags** — if an item is tagged for a specific domain (e.g., `project: ai-pm`), check whether that domain has `pattern: domain-source-synthesis` in its README
+2. **Hand off to the pattern** — route to domain-source-synthesis (or a domain-specific extension like [ai-pm-source-processing](ai-pm-source-processing.md)) for capture rather than filing generically
 3. **Source vs non-source** — items with a source URL route to the capture workflow; items describing personal experience route to the organic idea workflow
 
 When in doubt about whether an item is for a source-synthesis domain, ask rather than processing generically.
