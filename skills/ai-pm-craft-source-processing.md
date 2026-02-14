@@ -158,6 +158,8 @@ Featured entries are techniques worth championing organizationally — candidate
 
 **Decompose workflows into their constituent techniques.** A workflow like "PRD → Task List → Execution" contains three discrete techniques: (1) interactive PRD writing (templatization + follow-up questions), (2) task list generation (observability, stakeholder engagement), (3) stepwise task execution (human-in-the-loop checkpoints). Each has different value, different contexts where it applies, and different lessons. Extract them separately. Cross-reference them via the Related section.
 
+**Decompose frameworks and classification schemes the same way.** When a source presents "three types of X" or "N categories of Y," don't default to one entry describing the whole framework. Each category may have independent properties — its own disruption profile, its own implications, its own actionable guidance. The test: can each category stand alone as something you'd teach someone? If each has its own *characteristics*, its own *so-what*, and its own *what to do about it*, they're separate entries. Example: "Shape/Ship/Sync" is one framework with three categories, but each has a different AI disruption rating, different applicable techniques, and different investment implications — that's three entries, not one. Cross-reference them via Related sections.
+
 **Name entries by what they teach, not where they came from.** "Ryan Carson's three-file system" is a source reference. "Interactive PRD Writing with AI" is a teachable technique. The entry should be recognizable and useful even if you've never read the source.
 
 **Capture the unique mechanism, not just the outcome.** For a technique, the *how* matters as much as the *what*. "Use AI to write PRDs" is too vague. "Templatize PRD generation with rule files that instruct AI to ask clarifying questions before writing" captures the actual insight.
@@ -184,7 +186,7 @@ Featured entries are techniques worth championing organizationally — candidate
 
 ## Watch Out For
 
-**Overly broad entries.** "AI Product Management Best Practices" is too broad. "Pre-mortem for AI Feature Launches" is right. If you can't explain the idea in 2 sentences, it's probably multiple ideas. Similarly, "PRD-Driven AI Development" that covers three distinct techniques is too broad — split into "Interactive PRD Writing," "Task List Generation for Observability," and "Stepwise Task Execution."
+**Overly broad entries.** "AI Product Management Best Practices" is too broad. "Pre-mortem for AI Feature Launches" is right. If you can't explain the idea in 2 sentences, it's probably multiple ideas. Similarly, "PRD-Driven AI Development" that covers three distinct techniques is too broad — split into "Interactive PRD Writing," "Task List Generation for Observability," and "Stepwise Task Execution." The same applies to classification frameworks: "Shape/Ship/Sync PM Work Model" bundles three categories with different disruption profiles and different actionable guidance — split into "Shape the Product," "Ship the Product," and "Sync the People."
 
 **Under-extracting from rich sources.** A source with three workflows likely contains 5-8 discrete ideas, not 3. Look for: the overarching insight *and* each individual technique *and* any broadly applicable sub-techniques (e.g., a prompting pattern that works beyond the specific use case described).
 
