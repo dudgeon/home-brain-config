@@ -87,16 +87,17 @@ This is the judgment-heavy step. Think carefully. **Before processing, read `met
    - **Phase** (product-lifecycle, required): Which of the six phases — discover, frame, shape, build, release, measure?
    - **Component** (product-lifecycle, optional): What specific component within the phase? Use the component slug from the taxonomy. Omit if the entry fits the phase generally but not a specific component.
    - **Horizontal domain** (horizontal, required): Which stack layer (by delivery mechanism)?
-     - `context` — knowledge infrastructure: making knowledge discoverable and usable (context graphs, agent-oriented KM, progressive disclosure)
      - `prompting` — portable techniques for crafting effective instructions (works in any chat window)
-     - `gems-and-gpts` — packaged, shareable, non-agentic AI tools (Custom GPTs, Google Gems); building and distributing for teams
-     - `agents` — filesystem-paired, autonomous agents (lifecycle, rules, skills, templates)
+     - `context` — knowledge infrastructure: making knowledge discoverable and usable (context graphs, agent-oriented KM, progressive disclosure)
+     - `runtimes` — packaged, shareable, non-agentic AI tools (Custom GPTs, Google Gems, Claude Projects); building and distributing for teams
+     - `agents` — building and managing knowledge agents (lifecycle, rules, skills, templates, tools, workflows)
    - **Lifecycle phase** (horizontal, optional): If the horizontal entry has a primary phase connection, record it for dual attribution.
 4. **For each idea, decide**: Is this genuinely new to the knowledge base, or a restatement of something already captured?
    - **New idea**: Create knowledge entry from `templates/knowledge-entry.md` in the appropriate domain folder:
      - Product lifecycle: `knowledge-base/product-lifecycle/{phase}/`
      - Horizontal: `knowledge-base/horizontal/{horizontal_domain}/`
      - AI adoption: `knowledge-base/ai-adoption/`
+     - Software methodology: `knowledge-base/software-methodology/`
    - **Existing idea with new perspective**: Update existing knowledge entry — add new source citation to the Sources section, enrich Summary or How to Apply if this source adds something genuinely new
    - **Restatement with nothing new**: Just add a citation to the existing entry's Sources section
 5. **Write the citation block** for each idea×source pairing:
@@ -175,9 +176,11 @@ Featured entries are techniques worth championing organizationally — candidate
 
 **Screen for change management and adoption.** Sources often embed insights about how leaders drive adoption of AI-native skills alongside the craft techniques themselves. These are easy to overlook because they feel like "context" rather than "content" — but they're independently valuable. Examples: framing AI skills as mandatory for one's next job (urgency creation), running live demos to shift skeptics (show-don't-tell adoption), pairing resisters with early adopters (social proof). When you find these, extract them as knowledge entries under the Change Management & Adoption section. The test: is this about *how to bring others along* rather than *how to do the craft yourself*?
 
-**Screen for horizontal domain insights.** Sources often embed insights across multiple stack layers. A source about "how we built X with AI agents" may contain: (1) lifecycle-phase techniques (Build), (2) a context engineering strategy (Context), (3) a portable prompting pattern (Prompting), and (4) an agent management pattern (Agents). Extract each into the appropriate horizontal domain. The test: is this about *knowledge infrastructure* (→ Context), a *portable technique for any chat window* (→ Prompting), *packaged shareable AI tools* (→ Gems & GPTs), or *autonomous agents* (→ Agents)?
+**Screen for horizontal domain insights.** Sources often embed insights across multiple stack layers. A source about "how we built X with AI agents" may contain: (1) lifecycle-phase techniques (Build), (2) a context engineering strategy (Context), (3) a portable prompting pattern (Prompting), and (4) an agent management pattern (Agents). Extract each into the appropriate horizontal domain. The test: is this a *portable technique for any chat window* (→ Prompting), about *knowledge infrastructure* (→ Context), *packaged shareable AI tools* (→ Templated AI Runtimes), or *knowledge agents* (→ Agents)?
 
-**Match to delivery mechanism.** The horizontal stack is organized by delivery mechanism with increasing capability. A portable prompting pattern you could use tomorrow in any chat window → Prompting. Knowledge infrastructure for making information discoverable to humans and agents → Context. A packaged, distributable AI tool (Custom GPT, Google Gem) → Gems & GPTs. An autonomous agent pattern (lifecycle, execution, management) → Agents. When in doubt, consider where the technique is *delivered* — chat window, knowledge system, packaged tool, or agent runtime.
+**Screen for software methodology evolution.** Sources may embed insights about how AI fundamentally changes delivery paradigms — compound engineering, spec-driven development, vibe coding. These are distinct from lifecycle-phase techniques (which augment a phase) and horizontal skills (which are lifecycle-agnostic PM tools). The test: is this about *how the methodology itself is evolving* rather than *how to use AI within the current methodology*?
+
+**Match to delivery mechanism.** The horizontal stack is organized by delivery mechanism with increasing capability. A portable prompting pattern you could use tomorrow in any chat window → Prompting. Knowledge infrastructure for making information discoverable to humans and agents → Context. A packaged, distributable AI tool (Custom GPT, Google Gem) → Templated AI Runtimes. An agent pattern (lifecycle, tools, management) → Agents. When in doubt, consider where the technique is *delivered* — chat window, knowledge system, packaged tool, or agent runtime.
 
 **Lineage is the whole point.** The knowledge entry is the synthesis, but its value comes from being able to trace back to specific quotes and demonstrations in specific sources. Don't skimp on citations.
 
@@ -245,34 +248,6 @@ Quick notes — ideas, techniques, learning goals — that are nascent and not y
 
 ## Taxonomy Reference
 
-**Full reference**: `domains/professional-development/ai-pm/meta/taxonomy.md`
-**Lifecycle framework**: `domains/professional-development/ai-pm/meta/lifecycle-framework-v2.md`
+**Read before processing**: [`meta/taxonomy.md`](../domains/professional-development/ai-pm/meta/taxonomy.md) — canonical reference for domains, horizontal sub-domains, lifecycle phases, components, slugs, classification tests, and placement rules.
 
-Three domains, six lifecycle phases, four horizontal domains:
-
-| Domain | Folder | Classification test |
-|---|---|---|
-| **Product Lifecycle** | `knowledge-base/product-lifecycle/{phase}/` | Augments a specific lifecycle phase |
-| **Horizontal** | `knowledge-base/horizontal/{horizontal_domain}/` | Cross-cutting skill, methodology, or knowledge area |
-| **AI Adoption** | `knowledge-base/ai-adoption/` | About bringing others along or changing how teams/orgs work |
-
-**Lifecycle phases**: Discover → Frame → Shape → Build → Release → Measure
-
-**Horizontal domains**:
-
-| Horizontal Domain | Slug | Classification test |
-|---|---|---|
-| Context | `context` | Knowledge infrastructure: making knowledge discoverable and usable |
-| Prompting | `prompting` | Portable technique for crafting effective instructions (works in any chat window) |
-| Gems & GPTs | `gems-and-gpts` | Packaged, shareable, non-agentic AI tools |
-| Agents | `agents` | Filesystem-paired, autonomous agents (lifecycle, management, execution) |
-
-Each lifecycle phase has named components (see `meta/taxonomy.md` for the full list with slugs). Use the most specific component that fits. If the entry fits the phase but not a specific component, omit `component` from frontmatter.
-
-**Placement rules**:
-1. Most specific component wins (lifecycle) or most specific horizontal domain wins (horizontal)
-2. Phase-level is OK when no component fits
-3. Cross-phase entries (3+ phases) → horizontal (then determine which horizontal domain)
-4. Horizontal entries can optionally reference a `lifecycle_phase` for dual attribution
-5. Screen every source for adoption insights alongside craft techniques
-6. Screen every source for horizontal domain insights (delivery methodologies, agent management, knowledge patterns)
+**Lifecycle framework**: [`meta/lifecycle-framework-v2.md`](../domains/professional-development/ai-pm/meta/lifecycle-framework-v2.md)
