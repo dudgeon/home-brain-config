@@ -17,6 +17,30 @@ This skill covers how to handle person notes, including multi-person interaction
 
 ---
 
+## Relationship Proximity
+
+People in your world exist at different distances and need different levels of tracking:
+
+**Close circle** — family, close friends, people you interact with daily/weekly. Build rich profiles over time.
+
+**Regular contacts** — friends, colleagues, recurring acquaintances. Know their role, context, and how you interact.
+
+**Extended network** — people you encounter occasionally. Lightweight entries — name, context, last interaction, anything notable.
+
+### When Encountering a New Person
+
+Don't assume the user remembers this model. When a new person comes up, ask clarifying questions:
+
+> "I haven't seen [name] before. A few quick questions:"
+>
+> 1. **How do you know them?** (family friend, colleague, kid's friend's parent, etc.)
+> 2. **How often do you interact?** (regularly, occasionally, one-off)
+> 3. **Anything I should know?** (context that would help track them)
+
+Based on answers, decide file vs lightweight entry vs child's friends.md entry.
+
+---
+
 ## Kids' Friends vs Personal Contacts
 
 **Kids' friends**: Keep as entries in each child's `friends.md` file using `###` headings per friend. Don't create individual person files.
@@ -78,6 +102,20 @@ This ensures the system captures relationship context across all relevant person
 
 ---
 
+## Detecting Relationship Changes
+
+Watch for signals that someone's proximity is shifting:
+- User starts mentioning someone much more frequently → may need an individual file
+- Someone gets a new role or life change that affects the user
+- A casual acquaintance becomes important to a project or family activity
+- Someone the user knew well drops out of mention → profile may be going stale
+
+When you notice a shift, surface it:
+
+> "[Name] has come up in 3 conversations this week. They're currently just in friends.md — should I create a full person file for them?"
+
+---
+
 ## Person Enrichment Checklist
 
 **When adding information to a person file** — whether from user conversation, web research, inbox items, or any other source — run through this checklist before considering the update complete:
@@ -107,6 +145,10 @@ Scan all available information for date-anchored events and add them to the Time
 - Wealth, net worth, and financial details: capture career milestones (IPO, founding) but avoid specific valuations or net worth figures unless the user requests them
 - This is a personal knowledge base, not a Wikipedia article — prioritize what matters to the user's relationship with this person
 - For public figures who are also personal contacts, lead with the personal relationship, not the public biography
+
+### 6. Kids' cross-posting
+- If a child was involved in the interaction or event, does their `memories.md` need a timeline entry too?
+- See "Kids' Timeline Entries" section above for criteria
 
 ---
 

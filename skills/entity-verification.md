@@ -23,20 +23,31 @@ Act like a chief of staff: research and verify facts from primary or secondary s
 
 ---
 
+## Resolution Order
+
+When resolving an entity, check these in order:
+
+1. **Context files** — `context/*.md` (family context, people files, domain READMEs)
+2. **Domain files** — relevant domain notes, project files, concept files
+3. **Web research** — search to confirm details, find canonical names, get links
+4. **Ask the user** — only after exhausting the above
+
+---
+
 ## How to Think About It
 
 **Links are verification opportunities.** When the user provides a URL, the source likely contains the canonical name. Fetch and verify before capturing.
 
 **Do the research before asking.** Don't immediately ask the user when direct fetch fails. Try multiple approaches:
-1. Try fetching the URL directly
-2. If blocked, try oEmbed endpoints (e.g., `noembed.com/embed?url=...`)
-3. Search for the URL/video ID + platform name
-4. Search for the vague description + platform + recent timeframe
-5. Look for the creator/channel name in search results and cross-reference
+1. Fetch the URL directly
+2. If blocked, try alternative access methods (different URL format, cached version, Chrome MCP)
+3. Search for the URL content via web search
+4. Search for the vague description with qualifying terms
+5. Cross-reference results to confirm identity
 
-**Ask only as a last resort.** After exhausting research options, then ask the user for the actual name rather than capturing the vague version.
+**Ask only as a last resort.** After exhausting research options, then ask the user for the actual name.
 
-**Specificity matters for retrieval.** Vague names make notes harder to find later. "Steve Cusato's Spaghetti in Tomato Water" is more useful than "tomato water recipe."
+**Specificity matters for retrieval.** Vague names make notes harder to find later. "The analytics tool" should become "Amplitude" (with link). "Mike's wife" should become "Mike and Sarah Chen."
 
 ---
 
@@ -53,6 +64,16 @@ Act like a chief of staff: research and verify facts from primary or secondary s
 - Event names
 
 **Giving up too early on blocked sources.** YouTube, some news sites, and paywalled content may not be directly fetchable — but web searches, oEmbed APIs, and indirect lookups often work. Exhaust these options before asking the user.
+
+---
+
+## After Verification
+
+When you've resolved an entity:
+1. Use the canonical name in the note being created
+2. Add a link if one was found (company website, product page, LinkedIn, etc.)
+3. If this is a recurring entity, consider whether it belongs in a context file for future resolution
+4. Note the verification in your work — "Confirmed: [vague reference] is [canonical name]"
 
 ---
 

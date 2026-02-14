@@ -25,6 +25,7 @@ When user mentions information, assess if it's important using these criteria:
 - **Constraints**: Limitations, requirements, boundaries
 - **Relationships**: Connections between people, places, concepts
 - **Changes**: New information that updates previous understanding
+- **Decisions**: Outcomes of discussions, rationale, who decided, what was considered
 
 ### 2. Determine Retention Location
 

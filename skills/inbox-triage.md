@@ -88,26 +88,15 @@ Every inbox item is a signal. Before routing, ask:
 
 3. **Connections?** What existing notes should link to/from this content?
 
-## Project-Tagged Items
+## Source-Synthesis Domain Detection
 
-Some inbox items are pre-tagged for specific learning projects. These bypass generic triage and route to specialized processing.
+Some inbox items are destined for domains that use the [domain-source-synthesis](domain-source-synthesis.md) pattern. When triaging:
 
-### Detecting Project Tags
+1. **Check for domain/project tags** — if an item is tagged for a specific domain (e.g., `project: ai-pm-craft`), check whether that domain has `pattern: domain-source-synthesis` in its README
+2. **Hand off to the pattern** — route to domain-source-synthesis (or a domain-specific extension like [ai-pm-craft-source-processing](ai-pm-craft-source-processing.md)) for capture rather than filing generically
+3. **Source vs non-source** — items with a source URL route to the capture workflow; items describing personal experience route to the organic idea workflow
 
-Check frontmatter for `project:` field. Currently recognized projects:
-
-- **`project: ai-pm-craft`** → Route to the `ai-pm-craft-source-processing` skill. Do NOT process generically. Determine which workflow to use:
-  - **Has a source URL** (in frontmatter or body) → "Add New Source" workflow. This is external source material (article, video, tweet thread, etc.) to archive and add to the reading queue.
-  - **No source URL** (describes a technique/idea from personal experience) → "Add Organic Technique" workflow. This creates or enriches a knowledge entry directly, skipping the source file step.
-
-### How Items Get Tagged
-
-Users may tag inbox items themselves, or mention the project when dropping something in:
-- Frontmatter `project: ai-pm-craft`
-- Tags include `ai-pm-craft` or `ai-pm-craft-source`
-- Note content mentions "for the pm project", "ai pm craft", or similar
-
-When in doubt about whether an item is for a known project, ask rather than processing generically.
+When in doubt about whether an item is for a source-synthesis domain, ask rather than processing generically.
 
 ---
 
@@ -150,10 +139,28 @@ Any dates or events extracted from third-party emails (newsletters, eblasts, gro
 When processing inbox (whether prompted or as post-task check):
 1. Read each note
 2. **Classify the item** — user note, annotated forward, or unannotated forward (see Email Forward Handling above)
-3. **Check for project tags** — if tagged for a specific project, hand off to that project's processing skill (see above)
+3. **Check for source-synthesis domains** — if tagged for a domain with `pattern: domain-source-synthesis`, hand off to that domain's processing skill (see Source-Synthesis Domain Detection above)
 4. Detect new or existing entities (see above)
 5. Add proper metadata
 6. Create links to related notes
 7. Move to appropriate domain folder (or merge into existing note)
 8. Update INDEX.md if significant
 9. Archive processed item to `_archive/YYYY-Www/`
+
+---
+
+## Post-Triage Item Annotation
+
+When filing an inbox item, annotate it with triage metadata before archiving:
+
+```yaml
+---
+# Original frontmatter preserved above
+triage_status: filed|merged|discarded
+triage_date: YYYY-MM-DD
+triage_action: "Brief description of what was done"
+triage_destination: "path/to/destination.md"
+---
+```
+
+This creates an audit trail: what came in, what happened to it, where it went.
