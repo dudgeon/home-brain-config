@@ -88,6 +88,70 @@ Every inbox item is a signal. Before routing, ask:
 
 3. **Connections?** What existing notes should link to/from this content?
 
+---
+
+## Entity Timeline Updates — Hub and Spoke
+
+When a note references people or projects, update their entity files using a **hub-and-spoke** pattern:
+
+- **Hub**: The archived inbox note in `inbox/_archive/` — this is the authoritative record
+- **Spokes**: Person files and project notes each get a lightweight timeline entry pointing back to the hub
+
+### Person File Updates
+
+For each person mentioned, add a reverse-chronological timeline entry in their file (`domains/people/[name]/README.md` or `domains/family/[name]/`):
+
+```markdown
+### YYYY-MM-DD — Brief description of interaction
+
+One to three sentence summary of what was discussed relevant to this person.
+Not a transcript — a useful index entry.
+
+Source: [inbox note](relative/path/to/inbox/_archive/YYYY-Www/note.md)
+```
+
+### Project Updates
+
+For each project discussed, add a similar timeline entry:
+
+```markdown
+### YYYY-MM-DD — Brief topic [progress]
+
+One-liner on what was discussed or decided. Detail lives in the inbox note.
+
+Source: [inbox note](relative/path/to/inbox/_archive/YYYY-Www/note.md)
+```
+
+### Cross-Links Between Spokes
+
+Don't link person ↔ project for every interaction. The inbox note is the natural join point. Only add direct person ↔ project links when capturing a **durable relationship** — that's an entity fact, not a meeting artifact.
+
+---
+
+## Domain Emergence and Corpus Backfill
+
+During triage, you may notice items clustering around a topic that doesn't have a domain. This is a **domain emergence signal**.
+
+### Detection
+
+- Multiple inbox items routing to the same parent domain but sharing a distinct sub-theme
+- A single item introducing a clearly distinct life area with no existing home
+- Repeated entity references that don't fit neatly into current domain structure
+
+### Response
+
+1. **Propose the new domain** — explain the clustering pattern, suggest a name and location. Number the evidence. Check [conventions.md](../conventions.md) for the current domain list. Get user approval before creating.
+2. **Create the domain** — README.md (with `## Timeline` section), any initial notes from the triggering items.
+3. **Bounded backfill scan** — search existing notes for mentions of the new domain's key concepts. Present findings as a numbered list:
+   - Notes that should **backlink** to the new domain (add a link)
+   - Notes that might **belong** in the new domain (propose relocation)
+   - Context files that should **reference** the new domain
+4. **Execute approved changes** — only after user confirms which items to act on.
+
+Backfill runs **once at domain creation**, not continuously.
+
+---
+
 ## Source-Synthesis Domain Detection
 
 Some inbox items are destined for domains that use the [domain-source-synthesis](domain-source-synthesis.md) pattern. When triaging:
@@ -134,18 +198,60 @@ Any dates or events extracted from third-party emails (newsletters, eblasts, gro
 
 ---
 
+## Enrichment Pass — CriticMarkup Annotations
+
+Before decomposing and routing, scan the raw note for opportunities to enrich it from **existing home-brain content**. This turns the archived note into a self-contained record — what the user said *plus* what the system already knew.
+
+### When to Annotate
+
+- The note contains a question that existing domain files, context files, or decision records can answer
+- A vague reference ("the vendor", "that project") can be resolved to a specific entity with a link
+- A stated fact conflicts with or confirms something already captured — worth noting the connection
+
+### When NOT to Annotate
+
+- The question requires web research or speculation — leave it unanswered (or flag as a task)
+- The annotation would just restate what the note already says
+- The note is already well-structured and complete
+
+### CriticMarkup Convention
+
+Use CriticMarkup comment syntax, dated and attributed:
+
+```
+{>>YYYY-MM-DD @claude: Annotation text. See [entity](relative/path/to/file.md)<<}
+```
+
+Place annotations **inline, immediately after** the relevant text. Do not move or modify the original text.
+
+**Example:**
+
+```markdown
+I need to check on the swim team registration deadline
+{>>2026-02-15 @claude: NCC Sharx registration opens in March. See [ncc-sharx](domains/family/shared-activities/ncc-sharx/README.md)<<}
+```
+
+### Enrichment Boundary
+
+Only annotate from **existing home-brain content** — domain files, context files, decision records, person files. Never from web searches, speculation, or general knowledge. If the system can't answer it, leave it alone or create a task to research it.
+
+---
+
 ## Processing Inbox Workflow
 
 When processing inbox (whether prompted or as post-task check):
 1. Read each note
 2. **Classify the item** — user note, annotated forward, or unannotated forward (see Email Forward Handling above)
-3. **Check for source-synthesis domains** — if tagged for a domain with `pattern: domain-source-synthesis`, hand off to that domain's processing skill (see Source-Synthesis Domain Detection above)
-4. Detect new or existing entities (see above)
-5. Add proper metadata
-6. Create links to related notes
-7. Move to appropriate domain folder (or merge into existing note)
-8. Update INDEX.md if significant
-9. Archive processed item to `_archive/YYYY-Www/`
+3. **Enrichment pass** — annotate answerable questions and resolvable references with CriticMarkup (see above)
+4. **Check for source-synthesis domains** — if tagged for a domain with `pattern: domain-source-synthesis`, hand off to that domain's processing skill (see Source-Synthesis Domain Detection above)
+5. Detect new or existing entities (see above)
+6. **Update entity timelines** — add hub-and-spoke entries for people and projects referenced in the note (see above)
+7. Add proper metadata
+8. Create links to related notes
+9. Move to appropriate domain folder (or merge into existing note)
+10. **Check for domain emergence** — if routing reveals clustering around an untracked topic, propose new domain + backfill (see above)
+11. Annotate the original with triage metadata
+12. Archive processed item to `_archive/YYYY-Www/`
 
 ---
 

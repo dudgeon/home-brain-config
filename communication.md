@@ -92,6 +92,54 @@ This keeps the inbox from silently accumulating. Treat it as a natural checkpoin
 3. Link to relevant resources and past work
 4. Suggest next actions based on past patterns
 
+### Changelog Awareness
+
+An always-on behavioral rule for capturing work activity (milestones, decisions, wins, progress) into Timeline sections of project files and domain READMEs.
+
+**At session start** — when reading `tasks.md`, also:
+1. Note which projects/domains have active work
+2. Read the goals and current blockers from those project files
+3. Carry this context forward so you can recognize when goals are met, blockers are resolved, or scope changes
+
+This is not a new step — it enriches the existing "read tasks.md at session start" behavior.
+
+**During work** — watch for these signals:
+
+| Signal | Likely type |
+|--------|-------------|
+| Task marked done that was a project milestone or blocker | `[milestone]` or `[blocker-resolved]` |
+| Decision made and recorded | `[decision]` |
+| User expresses satisfaction or celebration | `[win]` |
+| User shares an insight or lesson | `[learning]` |
+| Significant work completed on a project | `[progress]` |
+| Scope explicitly changed | `[scope-change]` |
+
+When a signal is detected:
+1. Draft a 1-line entry based on what just happened
+2. Infer the type from context (the user never picks a type)
+3. Ask brief confirmation — e.g., "This looks like a major milestone for [project]. Should I add it to the timeline?"
+4. On confirmation, append the entry to the appropriate Timeline section (project file or domain README, based on scope)
+5. On decline, move on without persisting
+
+**Entry format:**
+```markdown
+### YYYY-MM-DD — Summary phrase [type]
+- Detail bullets (1-3, enough context for future retrieval)
+- Links: [artifact](path/or/url) (optional but encouraged)
+- Impact: Why this matters (optional, useful for review prep)
+```
+
+**At session end** — if significant work was done on a project but no timeline entry was captured, prompt once:
+> "We made progress on [project] this session — [brief summary]. Worth adding to the timeline?"
+
+**What NOT to capture:**
+- Routine task completions that don't represent notable progress
+- Knowledge system maintenance (file reorganization, template updates, metadata fixes)
+- Trivial edits or corrections
+- The agent's own operational work (reading files, searching, etc.)
+
+Use judgment. When in doubt, don't prompt — false negatives (missing an entry) are better than false positives (constant prompting).
+
 ### Session Retros
 
 After any session where you hit meaningful friction — a wrong approach, a tool you didn't think to use, a pattern that wasted time, or a correction from the user — proactively retro before closing out:

@@ -107,6 +107,11 @@ User prefers to:
    - Include enough context for future review
    - Document comprehensively, but only after the conversation settles on an approach
 
+5. **Offer timeline entry**:
+   - After documenting the decision, offer to add a timeline entry linking to the decision record
+   - Decisions that shape project direction are always changelog-worthy (per [communication.md](communication.md) Changelog Awareness)
+   - Brief prompt: "Should I add this decision to [project]'s timeline?"
+
 ---
 
 ## Choosing the Right Template

@@ -33,6 +33,7 @@ This document describes the task management system for home-brain.
 
 - Mark `@claude` tasks in progress when you start: `- [~]`
 - Mark complete when done: `- [x]`
+- After marking a task done, assess whether the completion is changelog-worthy (per the Changelog Awareness section in [communication.md](communication.md)). If so, offer to capture a timeline entry. Not every task completion qualifies — use the project's goals and blockers as context for significance.
 - Add new tasks as they emerge from conversations
 - Don't delete completed tasks immediately - archive them
 

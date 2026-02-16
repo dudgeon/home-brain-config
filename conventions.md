@@ -106,6 +106,7 @@ project: ai-pm
 ---
 ```
 
+- **Filename date** — Use the `published` date for the filename prefix (`YYYY-MM-DD-slug.md`). If the published date is unknown, fall back to the `discovered` date.
 - `source_url` — Canonical URL of the original content (may go offline)
 - `archive_url` — Path to the local copy in this repo (permanent)
 - `source_type` — One of: `article`, `video`, `podcast`, `newsletter`, `tweet-thread`, `book-chapter`, `organic`, `note`
