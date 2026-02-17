@@ -124,6 +124,15 @@ This is the judgment-heavy step. Think carefully. **Before processing, read `met
 8. **Update ai-pm README.md Knowledge Map**: Add new entries under appropriate phase/domain headings
 9. **Update ai-pm README.md reading queue**: Move to "Recently Processed"
 
+### Verify Deployment (After Structural Changes)
+
+Trigger: After committing and pushing changes that affect folder structure, taxonomy, or the Knowledge Map — renames, new subdomains, moved entries. Not needed for simple content additions to existing folders.
+
+1. **Wait for sync**: Allow ~30 seconds, then check `gh run list --workflow=sync-public-repos.yml --limit 1` to confirm the sync job ran
+2. **Spot-check the public repo**: Use `mcp__github__get_file_contents` on `dudgeon/ai-pm` to verify renamed/new directories exist and READMEs match
+3. **Check the live site**: Navigate to `https://ai-pm.cc/knowledge-base/` via browser (ask the user for browser access if needed) and verify the Knowledge Map reflects the structural changes. Allow 2-3 minutes for GitHub Pages Jekyll rebuild.
+4. **If stale**: If the sync didn't run (common with multi-commit pushes), trigger manually: `gh workflow run sync-public-repos.yml`
+
 ### Review Reading Queue
 
 Trigger: "What's in my queue?", "what should I read?", "reading status"
