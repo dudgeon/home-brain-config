@@ -54,6 +54,7 @@ Trigger: User shares content (link, text, dictation about something they found)
    - `archive_url` = the GitHub path to this file (relative to repo root)
 5. **Update `sources/README.md`**: Add row to the All Sources table and the Unread section
 6. **Update the ai-pm README.md reading queue section**: Add to "Up Next (Unread)"
+7. **Archive inbox item if applicable**: If this source came from an inbox item, add triage metadata to the inbox file's frontmatter, then `git mv` it to `inbox/_archive/YYYY-Www/`. Do not skip this step — unarchived inbox items are the most common source of inbox clutter.
 
 ### Mark Source as Read
 

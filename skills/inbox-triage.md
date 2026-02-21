@@ -243,7 +243,7 @@ When processing inbox (whether prompted or as post-task check):
 1. Read each note
 2. **Classify the item** — user note, annotated forward, or unannotated forward (see Email Forward Handling above)
 3. **Enrichment pass** — annotate answerable questions and resolvable references with CriticMarkup (see above)
-4. **Check for source-synthesis domains** — if tagged for a domain with `pattern: domain-source-synthesis`, hand off to that domain's processing skill (see Source-Synthesis Domain Detection above)
+4. **Check for source-synthesis domains** — if tagged for a domain with `pattern: domain-source-synthesis`, hand off to that domain's processing skill (see Source-Synthesis Domain Detection above). **After the domain skill completes, return here and continue from step 5** — the handoff does not skip the archive step (step 12)
 5. Detect new or existing entities (see above)
 6. **Update entity timelines** — add hub-and-spoke entries for people and projects referenced in the note (see above)
 7. Add proper metadata
