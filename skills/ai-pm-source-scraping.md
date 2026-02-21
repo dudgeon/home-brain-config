@@ -149,43 +149,20 @@ A single piece of content sometimes appears under multiple URLs or dates (e.g., 
 
 ## Phase 3: Capture
 
+Per-article capture is handled by the **`scrape-article` skill**. That skill owns the full atomic capture unit: fetch chain, triage summary, source file creation, `sources/README.md` update, and scrape log update.
+
 ### For Small Batches (< 10 articles)
 
-Scrape articles inline. For each `pending` article:
-
-1. Fetch content — WebFetch first, Chrome MCP as fallback (for paywalled content)
-2. Create source file using the **ai-pm-source-processing** skill workflow ("Add New Source" step)
-3. Update the scrape log: change `pending` to `scrape` and add the source file link
+For each `pending` article, run Steps 1–8 of the `scrape-article` workflow. Since you already know the publication, skip Step 2 (metadata inference) and Step 7's publication lookup — the article is from the current publication, so update the scrape log entry as part of Step 7 directly.
 
 ### For Large Batches (10+ articles)
 
 Launch a background general-purpose agent. Provide it with:
-- The full list of pending articles (title, URL, author, date)
-- The source file template format (from `templates/source.md`)
-- Fetch instructions (WebFetch → Chrome MCP fallback)
+- The full list of pending articles (title, URL, author, date, publication)
+- The full contents of the `scrape-article` skill file (the agent needs the procedure inline)
 - Output directory: `domains/professional-development/ai-pm/sources/`
-- Instruction to update the scrape log as each file is created
 
-After the agent completes, verify source files exist and update the scrape log accordingly.
-
-### Source File Creation (per article)
-
-Follow the **ai-pm-source-processing** skill for the full "Add New Source" procedure. Key fields:
-
-```yaml
-status: unread
-source_type: [article | podcast | newsletter | video]
-source_url: "[original URL]"
-author: "[primary voice — for podcasts: the GUEST, not the host]"
-host: "[host name — podcasts only, omit for articles]"
-published: YYYY-MM-DD
-discovered: [today's date — the date claude captured it]
-summary: "[1-3 dense sentences for triage]"
-```
-
-After each source file is created:
-- Add it to `sources/README.md` (All Sources table + Unread section)
-- Update the scrape log: change decision to `scrape`, link to source file
+After the agent completes, verify source files exist and that `sources/README.md` and the scrape log were updated.
 
 ---
 

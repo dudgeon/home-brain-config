@@ -80,6 +80,8 @@ After completing a task (or reaching a natural stopping point), **always check t
 
 This keeps the inbox from silently accumulating. Treat it as a natural checkpoint between tasks.
 
+After checking the inbox, also run `git status` and look for **untracked files in public-facing paths** (`ai-pm/`, `.claude/`, `blog/posts/`). Untracked files in these paths are invisible to the sync workflow and will 404 on the live site. If any exist, flag them and offer to commit.
+
 ### When User Asks for Insights
 1. Search across relevant domains
 2. Look for patterns and connections
