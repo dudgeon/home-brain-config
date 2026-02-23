@@ -40,7 +40,10 @@ Trigger: User shares content (link, text, dictation about something they found)
 
 1. **Determine source metadata**: title, author, host (if interview), source_url, source_type, published date
    - **Attribution rule**: `author` = the primary voice whose ideas the source captures. For interviews/podcasts, this is the **guest**, not the host. The host goes in the `host` field. For multi-guest interviews, use the most relevant guest or comma-separate.
-2. **Fetch content**: Use the source URL to retrieve the full text/transcript. If `WebFetch` fails (403, paywall, etc.), fall back to Chrome MCP tools (`tabs_context_mcp` → `navigate` → `wait` → `get_page_text`) which use the user's authenticated browser session. If Chrome MCP also fails, try `WebSearch` for cached/alternative versions. Only flag for manual capture after exhausting all three approaches.
+2. **Fetch content**: Always check local first, then fetch online only if needed.
+   - **Step 1 — Check local source file**: If the source already exists in `sources/` (e.g., user says "process this" for an existing entry), read the file and check for a `## Raw Content` section with substantial content. If the raw content is present and appears complete (no truncation signals, no "partial content" notes), **use it as-is** — do not re-fetch from the web.
+   - **Step 2 — Fetch online only if needed**: If no local file exists yet, or the local file lacks raw content, or the content appears truncated/paywalled: use the source URL to retrieve the full text/transcript. Try `WebFetch` first. If it fails (403, paywall, etc.), fall back to Chrome MCP tools (`tabs_context_mcp` → `navigate` → `wait` → `get_page_text`) which use the user's authenticated browser session. If Chrome MCP also fails, try `WebSearch` for cached/alternative versions. Only flag for manual capture after exhausting all three approaches.
+   - **Truncation signals**: Abrupt mid-sentence endings, "Subscribe to read more", content under ~500 words for an article that should be longer, missing sections referenced in the summary, "partial content" or "paywall" notes in the file.
 3. **Generate triage summary**: Read the raw content and write a succinct summary for the frontmatter `summary` field. This is for quick triage — helping decide what's worth reading — not deep analysis.
    - **Tone**: Dense, concise, no fluff. Acronyms OK. Think "what would I need to know to decide whether to read this?"
    - **Focus**: Key claims, frameworks, or takeaways. What's novel or contrarian? What's the author's main argument?
@@ -73,11 +76,13 @@ Trigger: User says "process this", "extract ideas from X", or batch processing
 
 This is the judgment-heavy step. Think carefully. **Before processing, read `meta/taxonomy.md`** for the full classification reference. **If the source's ideas don't map cleanly to the taxonomy, propose taxonomy enhancement before creating entries** — see step 1.5 below.
 
-0. **Verify source completeness**: Before processing, confirm the source file contains full raw content. Check for a `## Raw Content` section and look for signals of truncation (e.g., "partial content" in notes, missing sections, abrupt endings). If the source is incomplete:
-   - **Do not process from partial content.** Incomplete sources produce incomplete knowledge entries — this is worse than not processing at all, because it creates entries that look finished but aren't.
-   - Attempt to fetch full content using the Add New Source fetch chain (WebFetch → Chrome MCP → WebSearch)
-   - If automated approaches fail, **ask the user for browser access** — they can authenticate and unlock paywalled content. This is not delegating work; it's requesting access only they can provide.
-   - Capture full content in the source file before proceeding to step 1
+0. **Verify source completeness**: Before processing, confirm the source file contains usable content. Check for a `## Raw Content` section, a substantial `## Summary` section, or `## Notes` with enough detail to process from. Look for signals of truncation (e.g., "partial content" in notes, missing sections, abrupt endings, content under ~500 words for a long-form article).
+   - **If the local source has full content** (raw content section or detailed summary + notes from a prior read): proceed directly to step 1 — do not re-fetch from the web.
+   - **If the source is incomplete or missing content**:
+     - **Do not process from partial content.** Incomplete sources produce incomplete knowledge entries — this is worse than not processing at all, because it creates entries that look finished but aren't.
+     - Attempt to fetch full content using the Add New Source fetch chain (WebFetch → Chrome MCP → WebSearch)
+     - If automated approaches fail, **ask the user for browser access** — they can authenticate and unlock paywalled content. This is not delegating work; it's requesting access only they can provide.
+     - Capture full content in the source file before proceeding to step 1
 1. **Read the source thoroughly** — understand the full argument, not just highlights
 1.5. **Evaluate taxonomy fit**: After reading the source but before classifying ideas, step back and ask: *will the current taxonomy enhance or detract from understanding this material?*
 
